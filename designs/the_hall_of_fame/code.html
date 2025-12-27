@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hall of Fame</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#192633",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                    backgroundImage: {
+                        'scifi-gradient': 'linear-gradient(135deg, rgba(19,127,236,0.15) 0%, rgba(16,25,34,0) 100%)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white pb-24">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/5 p-4 flex items-center justify-between">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Hall of Fame</h2>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</div>
+<!-- Segmented Filter Buttons -->
+<div class="px-4 py-4 w-full">
+<div class="flex h-12 w-full items-center justify-center rounded-xl bg-slate-200 dark:bg-surface-dark p-1">
+<label class="group flex cursor-pointer h-full flex-1 items-center justify-center rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-primary has-[:checked]:shadow-md transition-all duration-300">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500 group-has-[:checked]:text-slate-900 dark:text-slate-400 dark:group-has-[:checked]:text-white">Global</span>
+<input checked="" class="hidden" name="leaderboard_filter" type="radio" value="Global"/>
+</label>
+<label class="group flex cursor-pointer h-full flex-1 items-center justify-center rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-primary has-[:checked]:shadow-md transition-all duration-300">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500 group-has-[:checked]:text-slate-900 dark:text-slate-400 dark:group-has-[:checked]:text-white">Friends</span>
+<input class="hidden" name="leaderboard_filter" type="radio" value="Friends"/>
+</label>
+<label class="group flex cursor-pointer h-full flex-1 items-center justify-center rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-primary has-[:checked]:shadow-md transition-all duration-300">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500 group-has-[:checked]:text-slate-900 dark:text-slate-400 dark:group-has-[:checked]:text-white">Squads</span>
+<input class="hidden" name="leaderboard_filter" type="radio" value="Squads"/>
+</label>
+</div>
+</div>
+<!-- Top Team Spotlight (Apex Fusion) -->
+<div class="px-4 mb-6">
+<div class="relative overflow-hidden rounded-2xl border border-primary/30 bg-surface-dark shadow-[0_0_20px_rgba(19,127,236,0.15)] group">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<div class="h-full w-full bg-cover bg-center opacity-40 mix-blend-luminosity group-hover:mix-blend-normal group-hover:scale-105 transition-all duration-700" data-alt="Abstract geometric neon blue tech pattern background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCortvHfEbdA5jf2u2gDb8NYA-UISh_joVB5fsD03XEMGcxCELOEIjQg8RUdeGek8tCKDVfuM0U3xi2Dm2NXYvdAEg6g8hg3AgzeruewjjM3x1HLEOaEbkD31kwYEh35-e2pFy5cF6jIv0bkjjVFWrJUdeMjII35mNUscHm7HA1wLPnkICE7G-abx5CWuVG6ht5DuPp1loIdZs62xSnRwrJNJFFtr2lQWjw7kl3gYuKGs1gdwk_6Iq0j_uwhpguQPHkuAkm9SNxWmY');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent"></div>
+</div>
+<div class="relative z-10 flex flex-row items-center justify-between p-5">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="flex items-center justify-center size-5 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[16px]">trophy</span>
+</span>
+<p class="text-primary text-xs font-bold uppercase tracking-widest glow-text">Current Champions</p>
+</div>
+<h3 class="text-white text-2xl font-bold leading-tight tracking-tight">APEX FUSION</h3>
+<p class="text-slate-400 text-sm font-medium">Dominating the Arena</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="size-16 rounded-full border-2 border-primary p-1 shadow-[0_0_15px_rgba(19,127,236,0.6)] bg-black/50 backdrop-blur-sm">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Futuristic team logo shield glowing cyan" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBf-hGmXmeZ3QeOTfyvpbqyFqIW0nAPd8VyRSQBh9GvccXbPwDSzyHgwUjiS4Tki8Cy3vzMPTb2AWPTIF5wMMVsrAFrsQEPoAEn3_zpecNOUb1p4HyxsmYLEHlTxquAudzYMuu-fmeoiGg1At1e8XTYIquDFqEIs75v82smx-J83WHRjG-jEaRrNaHgQhOhlFzCve8YXxEdhkno1AaL_lOLXxentFb-wBxUdI83MTyUtdhb7TTegvieBPZihdGUS_QqbTUq8Z_mx28');">
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative light bar -->
+<div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-primary via-blue-400 to-transparent opacity-70"></div>
+</div>
+</div>
+<!-- Daily Top 10 Ticker Header -->
+<div class="flex items-center justify-between px-4 mb-3">
+<h2 class="text-white text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg animate-pulse">bolt</span>
+            Daily Top Movers
+        </h2>
+<span class="text-xs text-slate-500">Reset in 4h 12m</span>
+</div>
+<!-- Carousel (Horizontal Scroll) -->
+<div class="w-full overflow-x-auto no-scrollbar pb-6 px-4">
+<div class="flex gap-4 w-max">
+<!-- Mover 1 -->
+<div class="flex flex-col items-center gap-2 w-20 group cursor-pointer">
+<div class="relative">
+<div class="size-16 rounded-full p-0.5 bg-gradient-to-b from-green-400 to-transparent">
+<div class="w-full h-full rounded-full bg-surface-dark bg-cover bg-center border-2 border-background-dark" data-alt="Portrait of a young student with cyberpunk glasses" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiEuB2q_tHoCMkRkAhkx8J-gyahVlnmmjoy6hSa9xjQ1RQqtaRysKj0mH9jNLbUymQ0RP5hzuWBQlLmmW5O9wqNb-gbcjowx7l-maBTrTBC_PsvZ71aOLr5H9PIZUrtPeOZPWlIpGIfGd4MSIqLlGdEBVxlxl1tOw20bUQFPYogyNkhqWF086jA1XJogH_eJ5PCe45Oh-kDSMt2pZ7McaO5PQrBPHKrdJhEnvhCKeNBgMELAWwemznaUpwpYE5jgKGwWXRRlkVYVg');"></div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-surface-dark rounded-full p-0.5">
+<span class="material-symbols-outlined text-green-400 text-sm bg-green-400/10 rounded-full p-0.5">arrow_upward</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-white text-xs font-bold truncate w-20">@CyberKid</p>
+<p class="text-green-400 text-[10px] font-mono font-bold">+500xp</p>
+</div>
+</div>
+<!-- Mover 2 -->
+<div class="flex flex-col items-center gap-2 w-20 group cursor-pointer">
+<div class="relative">
+<div class="size-16 rounded-full p-0.5 bg-gradient-to-b from-green-400 to-transparent">
+<div class="w-full h-full rounded-full bg-surface-dark bg-cover bg-center border-2 border-background-dark" data-alt="Portrait of a female student with neon highlights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3Xj1O7FXAx9cNHSoKbQ4H65NCtjJ6eFjpzk9VM86Lr-yhgpha4kJxMK20nlCD04TW903_mPXyyl5kEs-IAvBA0yuhgJQseTBZQ5zaqCy8qR4YKcjfq71PfrgbG8eZ7i4gFnpbrw4SCp6T9Lu80LB2QA7n9VO64jqTxhUcbt2cFdW087rq2VcGosEwpZ3uVpPrkmLdX_zIt_kbx_Mi8FoK3yqWIAQJD8zsrzgaFLtJDs6B-7PgFhy_Yn2DREHVyePgdZEQoBnTX58');"></div>
+</div>
+</div>
+<div class="text-center">
+<p class="text-white text-xs font-bold truncate w-20">@NeuralNet</p>
+<p class="text-green-400 text-[10px] font-mono font-bold">+450xp</p>
+</div>
+</div>
+<!-- Mover 3 -->
+<div class="flex flex-col items-center gap-2 w-20 group cursor-pointer">
+<div class="relative">
+<div class="size-16 rounded-full p-0.5 bg-gradient-to-b from-green-400 to-transparent">
+<div class="w-full h-full rounded-full bg-surface-dark bg-cover bg-center border-2 border-background-dark" data-alt="Portrait of a focused male student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADA4rV2gHjH49bRq1GvyIvO6aFhYBXXbwHg5eGp07DA00t-51fV1JhUOtlOf8Ii_dSvzlq-0L8tD7VKdFHqy_gj-obeamVgW1EAoSrxw2VXV1Ee4QgjMuL1TC4oZHC5qqWH3QHGkPfWb53yXYxeDI9ZWshXYf6iGwYPMsyNnYvA-UHqU6yFQCIjiDjsWfu9hia776OqPQAjQnyTbcvoZIzJANBU3xWITvO0moeh_1MG7Wi3T4sJWwlMh9WhB5xFdRFH3nFrQKfJGI');"></div>
+</div>
+</div>
+<div class="text-center">
+<p class="text-white text-xs font-bold truncate w-20">@DataDr</p>
+<p class="text-green-400 text-[10px] font-mono font-bold">+410xp</p>
+</div>
+</div>
+<!-- Mover 4 -->
+<div class="flex flex-col items-center gap-2 w-20 group cursor-pointer">
+<div class="relative">
+<div class="size-16 rounded-full p-0.5 bg-gradient-to-b from-slate-600 to-transparent">
+<div class="w-full h-full rounded-full bg-surface-dark bg-cover bg-center border-2 border-background-dark" data-alt="Portrait of a student avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDY2BWCwZwTFlFYJTnOWMAH95tHpMSX0rNuBFHDdV_J0Z8wlmyJ9m86HheG4SsO86XGFBr8TOkm5J-V7aA97fa0DDsUtZZAy8QPoW4Fn9NlWZYt5C_qYb50mMpkFVJK5PWcEQW0LNT8tO_y9iTmPjT1X6cKl4puchpjw65eJ37nOFzZfTh5obiDbH3uh0or38n-HcF5UJd058_yJzE86p0GOneFeKBc-iV-l-Juv26xdKjUNIeB8NwsObc1e6IlJlEbYcQpqEiDv2E');"></div>
+</div>
+</div>
+<div class="text-center">
+<p class="text-white text-xs font-bold truncate w-20">@Pixel8</p>
+<p class="text-slate-400 text-[10px] font-mono font-bold">+320xp</p>
+</div>
+</div>
+<!-- Mover 5 -->
+<div class="flex flex-col items-center gap-2 w-20 group cursor-pointer">
+<div class="relative">
+<div class="size-16 rounded-full p-0.5 bg-gradient-to-b from-slate-600 to-transparent">
+<div class="w-full h-full rounded-full bg-surface-dark bg-cover bg-center border-2 border-background-dark" data-alt="Portrait of a smiling student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvSzHPXfaaid06cpzSLEFVyMdC2kUJrqX0XxCoXgfgf9jHYsTe7R_35SLDk3BlaxtKksV15yVMoIVLSeZxwTColapA_VLXuAk2D5YTPCCjbHv5LmzihFFZmVeQlnpeSrUBoT7rC_JYj6XambJD6VpL8bm-xdZm_-sikx-ak8HpAjPPgOSFPigomy3-W_jUmVFAhTihwKirGJRC_AX7GQv0lT9E3AY3hLqoPfNUiZKA88Z5-KQJ3BYWA7SBfHQIGPxe7MbRsHOpneI');"></div>
+</div>
+</div>
+<div class="text-center">
+<p class="text-white text-xs font-bold truncate w-20">@CodeX</p>
+<p class="text-slate-400 text-[10px] font-mono font-bold">+290xp</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard List -->
+<div class="flex flex-col px-4 gap-3 relative z-0">
+<!-- List Header -->
+<div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-slate-500 px-4 mb-1">
+<span class="w-8 text-center">#</span>
+<span class="flex-1 pl-4">Player / Rank</span>
+<span class="w-20 text-right">Mastered</span>
+</div>
+<!-- Rank 1 -->
+<div class="relative flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-surface-dark/90 to-surface-dark/40 backdrop-blur-md border border-yellow-500/30 shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-yellow-400 rounded-l-xl"></div>
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<span class="w-6 text-xl font-bold text-yellow-400 text-center font-mono">1</span>
+<div class="relative shrink-0">
+<div class="size-12 rounded-full border-2 border-yellow-400 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of top ranked player" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaM2-RjDwK9spXJgeGFNnGJ2R8Fd8X5FZN1Ouh6WQWhwDU6vaP8DDl6IMjrwczapgMeVbHj1NS4wErBkMD9xVkYmW0oySfPuI0_BDH910zm5OTs-td4Xvf9xn8DGdvEZSmSN0mrc8X_6CL3wA-kV5EmCGEJFPINYFpaUOIlbyTFcgWHNkqL2s2YxMFL5eiprQuSgyg3gBgC7un7Lqm5H-TZV3X8TERQXbrziFd6jHx1VckeGOq2rDPtB_dgGiZEpUzeZFa2bRlAts');"></div>
+</div>
+<div class="absolute -top-1 -right-1 bg-yellow-400 text-black rounded-full p-0.5">
+<span class="material-symbols-outlined text-[12px] font-bold block">crown</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-white font-bold text-base truncate">CyberStudent</p>
+<div class="flex items-center gap-1 text-yellow-400/80">
+<span class="material-symbols-outlined text-[14px]">military_tech</span>
+<span class="text-xs uppercase tracking-wide font-medium">Grandmaster</span>
+</div>
+</div>
+</div>
+<div class="text-right pl-2">
+<p class="text-xl font-bold text-white font-mono">1450</p>
+<p class="text-[10px] text-slate-500 uppercase font-bold">Concepts</p>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="relative flex items-center justify-between p-3 rounded-xl bg-surface-dark/40 backdrop-blur-md border border-slate-400/20">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-slate-300 rounded-l-xl"></div>
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<span class="w-6 text-xl font-bold text-slate-300 text-center font-mono">2</span>
+<div class="relative shrink-0">
+<div class="size-12 rounded-full border border-slate-300 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of second ranked player" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANVKlDFTYzjbnpGV7ptfNjKj_CQNVru0xPlUaQJ8k5-dgXUi0_DHN6D2guusw1F9eEi8C-4fsw0c6jHsLEgIeJFkF-hUFiYeYZhtx98NfyI3Qw9KM0TEsrSKj2tL9uEv2ZLQFnUrPbtIBrME1D25seEMb__mWL2YctXvNlKa9OFg5h9sYLT7MLtWcl0thxF7XKeooe9JhFzk2sqnxiWR_oOq_THp_ZzEDkUddp2y8zS5yRKXE-LIDX4FUnJKceq2aLoOcQC-0EERw');"></div>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-white font-bold text-base truncate">CodeWizard</p>
+<div class="flex items-center gap-1 text-slate-300">
+<span class="material-symbols-outlined text-[14px]">workspace_premium</span>
+<span class="text-xs uppercase tracking-wide font-medium">Master</span>
+</div>
+</div>
+</div>
+<div class="text-right pl-2">
+<p class="text-xl font-bold text-white font-mono">1320</p>
+<p class="text-[10px] text-slate-500 uppercase font-bold">Concepts</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="relative flex items-center justify-between p-3 rounded-xl bg-surface-dark/40 backdrop-blur-md border border-orange-700/20">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-700 rounded-l-xl"></div>
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<span class="w-6 text-xl font-bold text-orange-600 text-center font-mono">3</span>
+<div class="relative shrink-0">
+<div class="size-12 rounded-full border border-orange-700 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of third ranked player" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYDVRSSmYkqJB5zX-RtsNC_rvfgei9-1vZQliSgMz2SW7-Pg24wz0zJqWS2H3WckSGUv93idevuLz-NtG_f-UY9tgf1eDBkXl88pA8ApfKrOYbofwrnjASDHxda_jgX68cN_uFLeBVfyRJJJOGmtuClEzLX_MMwSc-yR8Dgt-TGJgXQ_CykdYLhdf4P11zf5Ug42Ew5yQw8wwdOYHW_KrbhXuCZjmDrsecWpx9FfH5tSqbrVaLpGwK2Tiypr7xHrnTZWXhMdadlps');"></div>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-white font-bold text-base truncate">TechnoNovice</p>
+<div class="flex items-center gap-1 text-orange-400">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+<span class="text-xs uppercase tracking-wide font-medium">Specialist</span>
+</div>
+</div>
+</div>
+<div class="text-right pl-2">
+<p class="text-xl font-bold text-white font-mono">900</p>
+<p class="text-[10px] text-slate-500 uppercase font-bold">Concepts</p>
+</div>
+</div>
+<!-- Rank 4 -->
+<div class="relative flex items-center justify-between p-3 rounded-xl bg-surface-dark/20 backdrop-blur-sm border border-white/5">
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<span class="w-6 text-lg font-bold text-slate-500 text-center font-mono">4</span>
+<div class="relative shrink-0">
+<div class="size-10 rounded-full border border-white/10 p-0.5 grayscale opacity-70">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of player rank 4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD14CIZJh5XLro_DQxpJD-DWeURq9dVDHvm-Np4eWjvyFzU-3OJeNmPxjQIQmoIPcEwyM1kfhZkQmV-5tKwN2T6sc0hyKmlDZaQWd1WoB2t6fhs-_ExJf9DsFvIkdAwAt598ePJRl_Tpvzyle1Wl5p1JpzRF1SCkbj3znMrkxx8kQpkCwd6DYLM29oQ8vWrsDLf__Dz-xis906JGaJ8rxK6Sg2f5Mlcgr80QJdU78HxNZfEIi01jwWSDRNBR3sWpQXkSvRgWWdLudk');"></div>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-slate-300 font-medium text-sm truncate">BitStream</p>
+<div class="flex items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+<span class="text-[10px] uppercase tracking-wide font-medium">Expert</span>
+</div>
+</div>
+</div>
+<div class="text-right pl-2">
+<p class="text-lg font-bold text-slate-300 font-mono">875</p>
+</div>
+</div>
+<!-- Rank 5 -->
+<div class="relative flex items-center justify-between p-3 rounded-xl bg-surface-dark/20 backdrop-blur-sm border border-white/5">
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<span class="w-6 text-lg font-bold text-slate-500 text-center font-mono">5</span>
+<div class="relative shrink-0">
+<div class="size-10 rounded-full border border-white/10 p-0.5 grayscale opacity-70">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of player rank 5" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVUnVBpmgquaR8wuaSXGYTk7ZRBCHh0Dau1m4RUxnghZICU9ljL0TLSW195g38NJNrOXdPv3ojRB54j8EqlpHxrDrOjs1SfyK_PjmkTXon3E0YCleYg5o11ptGlVfdQxw1yPGAxh1zc1rIDfvTRp6ObeRk36X2-O7GbE85xb9mABUyeXgmD47s_hB7fc_dRA2PCTUM-nBF-u-DmdWjs-eHUaGuWdCpCJ4UncYGfSOMwPNSK4qcYUEOgBXZ1fuo9szmyb5EU4wbsPc');"></div>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-slate-300 font-medium text-sm truncate">Glitch</p>
+<div class="flex items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+<span class="text-[10px] uppercase tracking-wide font-medium">Expert</span>
+</div>
+</div>
+</div>
+<div class="text-right pl-2">
+<p class="text-lg font-bold text-slate-300 font-mono">840</p>
+</div>
+</div>
+<!-- Padding for sticky bottom bar -->
+<div class="h-16"></div>
+</div>
+<!-- Sticky User Stats Bar -->
+<div class="fixed bottom-0 left-0 w-full z-40 px-4 pb-6 pt-2">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/95 to-transparent pointer-events-none"></div>
+<div class="relative flex items-center justify-between p-3 rounded-xl bg-primary/10 backdrop-blur-xl border border-primary/50 shadow-[0_0_20px_rgba(19,127,236,0.25)]">
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<span class="w-6 text-xl font-bold text-primary text-center font-mono">42</span>
+<div class="relative shrink-0">
+<div class="size-12 rounded-full border-2 border-primary p-0.5 shadow-[0_0_8px_rgba(19,127,236,0.5)]">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Avatar of current user" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsdgGtgv488SI5JzuxH_nz41-qBFDjc-xPtWjvFpFuSyDKcezZffWCYNuRiVEG2YtY8_M6fHorvd7-uivSZ_xitegw7pD8RL4eOu0nTQQj3U6YePgZizirWiqj7bUdx5emjd0yBwTfml4yI1lfc9YqMixGxDl5I2WVCwOBEcvQ9B60qTQlLvVQyY9n0ifQdDC4YDowcDyvbHVuqmP7P8g7hYD-ZYtyQCyxSyn1nDCv96bXU4gJlAvk3oFra3svd8ROvG6POFLpMqA');"></div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full p-1 border-2 border-background-dark">
+<span class="material-symbols-outlined text-[10px] font-bold block">person</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-white font-bold text-base truncate">You</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span class="text-xs uppercase tracking-wide font-medium">Apprentice</span>
+</div>
+</div>
+</div>
+<div class="text-right pl-2">
+<p class="text-xl font-bold text-primary font-mono glow-text">450</p>
+<p class="text-[10px] text-slate-400 uppercase font-bold">Concepts</p>
+</div>
+</div>
+</div>
+</body></html>

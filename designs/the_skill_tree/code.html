@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Skill Tree</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "gold": "#FFD700",
+                        "gold-dim": "#B8860B",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    backgroundImage: {
+                        'grid-pattern': "radial-gradient(#233648 1.5px, transparent 1.5px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Node glow animations */
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
+        }
+        @keyframes pulse-blue {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(19, 127, 236, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(19, 127, 236, 0); }
+        }
+        
+        .glow-gold {
+            animation: pulse-gold 3s infinite;
+        }
+        .glow-active {
+            animation: pulse-blue 2s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display overflow-hidden text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col">
+<!-- Top HUD -->
+<div class="absolute top-0 left-0 right-0 z-50 bg-background-dark/80 backdrop-blur-sm border-b border-[#233648] p-4 pb-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[#233648]" data-alt="User avatar showing a futuristic character portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmkQkmzPLdctQJTAMtpGtXFP0JLPIWIZR2wPQ_8qyQ-HvpDZlqODXpGd40MrW7fBqG-qcpG5069NLw9dU2GFuR7frD0hxpp-zvOWqEOoto66C6OhsWuzNn31PGgsgFVQMSYzWStQ2GWMeJGmQ7pMPQxJ1meAq0PQL6XJ64630KUkvrdyEOkmC9RgffKJ9caxqHtQ0ycIwiSm_uWlvAR4AW59P7himJ9g57_Hvk747fDvZdKTpgAaUHRPakt1uJWlOH_wWHSVj6_Xo");'>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-background-dark">
+                            LVL 5
+                        </div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold leading-tight tracking-tight">Knowledge Map</h2>
+<span class="text-[#92adc9] text-xs font-medium tracking-wide">STUDENT</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-[#192633] px-3 py-1.5 rounded-full border border-[#233648]">
+<span class="material-symbols-outlined text-gold text-[18px]">bolt</span>
+<p class="text-white text-sm font-bold leading-normal tracking-wide">1,250 XP</p>
+</div>
+</div>
+</div>
+<!-- Infinite Canvas / Map Area -->
+<div class="flex-1 relative overflow-hidden bg-background-dark w-full h-full">
+<!-- Grid Background -->
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#324d67 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+<!-- Map Container (Simulated centering) -->
+<div class="absolute inset-0 flex items-center justify-center overflow-auto no-scrollbar cursor-grab active:cursor-grabbing">
+<!-- Large container to simulate scrollable map -->
+<div class="relative w-[800px] h-[1000px] mt-20">
+<!-- Connection Lines (SVG Layer) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0">
+<defs>
+<lineargradient id="grad-gold" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#FFD700;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#FFD700;stop-opacity:0.5"></stop>
+</lineargradient>
+<lineargradient id="grad-blue" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#FFD700;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#137fec;stop-opacity:1"></stop>
+</lineargradient>
+<lineargradient id="grad-gray" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#137fec;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#324d67;stop-opacity:0.3"></stop>
+</lineargradient>
+</defs>
+<!-- Root to Tier 1 -->
+<path class="opacity-80" d="M400,100 C400,150 250,150 250,250" fill="none" stroke="url(#grad-gold)" stroke-linecap="round" stroke-width="4"></path>
+<path class="opacity-80" d="M400,100 C400,150 550,150 550,250" fill="none" stroke="url(#grad-gold)" stroke-linecap="round" stroke-width="4"></path>
+<!-- Tier 1 to Tier 2 -->
+<path d="M250,250 C250,350 250,350 250,450" fill="none" stroke="url(#grad-blue)" stroke-linecap="round" stroke-width="4"></path>
+<path d="M550,250 C550,350 550,350 550,450" fill="none" stroke="url(#grad-blue)" stroke-linecap="round" stroke-width="4"></path>
+<!-- Tier 2 to Tier 3 -->
+<path d="M250,450 C250,550 250,550 250,650" fill="none" stroke="url(#grad-gray)" stroke-dasharray="8 4" stroke-linecap="round" stroke-width="3"></path>
+<path d="M250,450 C250,550 400,550 400,650" fill="none" stroke="url(#grad-gray)" stroke-dasharray="8 4" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<!-- Root Node: Intro -->
+<div class="absolute top-[68px] left-[368px] flex flex-col items-center gap-2 z-10 group">
+<button class="flex size-16 items-center justify-center rounded-full bg-[#192633] border-2 border-gold text-gold shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-3xl">school</span>
+</button>
+<span class="bg-[#111a22] px-2 py-0.5 rounded text-[10px] font-bold tracking-wider text-gold uppercase border border-gold/30">Mastered</span>
+</div>
+<!-- Tier 1 Left: Logic -->
+<div class="absolute top-[218px] left-[218px] flex flex-col items-center gap-2 z-10">
+<button class="flex size-16 items-center justify-center rounded-full bg-[#192633] border-2 border-gold text-gold shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</button>
+<span class="text-xs font-bold text-gold tracking-wide mt-1">Logic</span>
+</div>
+<!-- Tier 1 Right: Variables -->
+<div class="absolute top-[218px] left-[518px] flex flex-col items-center gap-2 z-10">
+<button class="flex size-16 items-center justify-center rounded-full bg-[#192633] border-2 border-gold text-gold shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-3xl">data_object</span>
+</button>
+<span class="text-xs font-bold text-gold tracking-wide mt-1">Variables</span>
+</div>
+<!-- Tier 2 Left: Data Structures (Active Selection) -->
+<div class="absolute top-[418px] left-[218px] flex flex-col items-center gap-2 z-20">
+<!-- Pulsing rings for active state -->
+<div class="absolute inset-0 -m-4 rounded-full border border-primary/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+<button class="glow-active flex size-16 items-center justify-center rounded-full bg-primary border-2 border-white text-white shadow-lg transition-transform scale-110">
+<span class="material-symbols-outlined text-3xl">account_tree</span>
+</button>
+<span class="bg-primary px-2 py-0.5 rounded text-[10px] font-bold tracking-wider text-white uppercase shadow-md">Current</span>
+</div>
+<!-- Tier 2 Right: Loops -->
+<div class="absolute top-[418px] left-[518px] flex flex-col items-center gap-2 z-10 opacity-90">
+<button class="flex size-16 items-center justify-center rounded-full bg-[#192633] border-2 border-primary text-primary shadow-[0_0_15px_rgba(19,127,236,0.3)] transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-3xl">loop</span>
+</button>
+<span class="text-xs font-bold text-primary tracking-wide mt-1">Loops</span>
+</div>
+<!-- Tier 3 Left: Algorithms (Locked) -->
+<div class="absolute top-[618px] left-[218px] flex flex-col items-center gap-2 z-10 opacity-50 grayscale">
+<button class="flex size-16 items-center justify-center rounded-full bg-[#111a22] border-2 border-gray-600 text-gray-500 cursor-not-allowed">
+<span class="material-symbols-outlined text-3xl">calculate</span>
+</button>
+<span class="flex items-center gap-1 text-xs font-medium text-gray-500 tracking-wide mt-1">
+<span class="material-symbols-outlined text-[10px]">lock</span> Algorithms
+                        </span>
+</div>
+<!-- Tier 3 Right: Circuits (Locked) -->
+<div class="absolute top-[618px] left-[368px] flex flex-col items-center gap-2 z-10 opacity-50 grayscale">
+<button class="flex size-16 items-center justify-center rounded-full bg-[#111a22] border-2 border-gray-600 text-gray-500 cursor-not-allowed">
+<span class="material-symbols-outlined text-3xl">memory</span>
+</button>
+<span class="flex items-center gap-1 text-xs font-medium text-gray-500 tracking-wide mt-1">
+<span class="material-symbols-outlined text-[10px]">lock</span> Circuits
+                        </span>
+</div>
+</div>
+</div>
+<!-- Floating Controls -->
+<div class="absolute top-24 right-4 flex flex-col gap-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-[#192633]/80 backdrop-blur border border-[#324d67] shadow-lg active:bg-primary transition-colors">
+<span class="material-symbols-outlined text-white">add</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-[#192633]/80 backdrop-blur border border-[#324d67] shadow-lg active:bg-primary transition-colors">
+<span class="material-symbols-outlined text-white">remove</span>
+</button>
+<button class="mt-4 flex size-10 items-center justify-center rounded-full bg-[#192633]/80 backdrop-blur border border-[#324d67] shadow-lg active:bg-primary transition-colors">
+<span class="material-symbols-outlined text-white">my_location</span>
+</button>
+</div>
+</div>
+<!-- Detail Overlay / Bottom Sheet -->
+<div class="relative z-40 w-full bg-[#111a22] rounded-t-3xl shadow-[0_-5px_30px_rgba(0,0,0,0.5)] border-t border-[#233648]">
+<!-- Handle -->
+<div class="w-full flex justify-center pt-3 pb-1">
+<div class="h-1.5 w-12 rounded-full bg-[#324d67]"></div>
+</div>
+<div class="px-6 pb-8 pt-2">
+<!-- Header -->
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-primary text-sm font-bold tracking-widest uppercase">Tier 2 Skill</span>
+<span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+</div>
+<h2 class="text-white text-3xl font-bold leading-tight font-display">Data Structures</h2>
+</div>
+<div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/20 border border-primary/50 text-primary">
+<span class="material-symbols-outlined text-2xl">account_tree</span>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex gap-2 mb-6 overflow-x-auto no-scrollbar">
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-full bg-[#233648] px-3 border border-[#324d67]">
+<span class="material-symbols-outlined text-gold text-sm">stars</span>
+<p class="text-white text-xs font-bold">500 XP</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-full bg-[#233648] px-3 border border-[#324d67]">
+<span class="material-symbols-outlined text-[#92adc9] text-sm">code</span>
+<p class="text-white text-xs font-medium">Technical</p>
+</div>
+<div class="flex h-7 shrink-0 items-center justify-center gap-x-1.5 rounded-full bg-[#233648] px-3 border border-[#324d67]">
+<span class="material-symbols-outlined text-[#92adc9] text-sm">timer</span>
+<p class="text-white text-xs font-medium">45 min</p>
+</div>
+</div>
+<!-- Description -->
+<p class="text-[#92adc9] text-base leading-relaxed mb-6 font-body">
+                    Learn how to organize and store data efficiently. Mastering arrays, linked lists, and trees will unlock advanced algorithms.
+                </p>
+<!-- Progress Bar -->
+<div class="mb-6">
+<div class="flex justify-between text-xs font-bold text-[#92adc9] mb-2 uppercase tracking-wider">
+<span>Progress</span>
+<span>0%</span>
+</div>
+<div class="h-2 w-full bg-[#192633] rounded-full overflow-hidden">
+<div class="h-full w-[5%] bg-primary rounded-full shadow-[0_0_10px_rgba(19,127,236,0.8)]"></div>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full h-14 bg-primary hover:bg-blue-600 active:scale-[0.98] transition-all rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(19,127,236,0.4)]">
+<span class="text-white text-lg font-bold tracking-wide">Start Learning</span>
+<span class="material-symbols-outlined text-white">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Floating Nav Bar (Simulated) -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0">
+<!-- Placeholder for future nav logic, currently keeping it clean as per "One single page" request focusing on the map -->
+</div>
+</div>
+</body></html>

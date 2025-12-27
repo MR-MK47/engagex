@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Command Deck</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-dark": "#192633",
+                        "neon-green": "#39ff14", // Custom for the requested neon progress
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        "glow": "0 0 20px -5px rgba(19, 127, 236, 0.3)",
+                        "glow-green": "0 0 15px -3px rgba(57, 255, 20, 0.2)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .cyber-grid-bg {
+            background-image: linear-gradient(rgba(19, 127, 236, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(19, 127, 236, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden pb-24 selection:bg-primary selection:text-white">
+<!-- Background Pattern -->
+<div class="fixed inset-0 pointer-events-none cyber-grid-bg z-0 opacity-20"></div>
+<!-- Main Content Wrapper -->
+<div class="relative z-10 max-w-md mx-auto min-h-screen flex flex-col">
+<!-- Header / HUD -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-background-dark/80 border-b border-white/5 px-4 py-3">
+<div class="flex items-center justify-between gap-3">
+<!-- Avatar & Status -->
+<div class="flex items-center gap-3">
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-0.5 rounded-full bg-primary opacity-50 blur group-hover:opacity-75 transition duration-200"></div>
+<div class="relative bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-surface-dark" data-alt="Futuristic user avatar with a cybernetic headset" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvJQRp0fAJOz71rM41JNPbU3l3JpIn7ovVZnxjP7_aS5jj0JkBdH-Ql4U0AV3E3NvzBc8dRGgVKsZs5ijgX3Yb879w2F2OT_-ZgydsdrOHvohyZKuxracHRwo4X_CYY_98mZlkotiIyJTeRJ5akHZMziCYmBr2CqXEf8H5zEa38zFb_K5aDcGCCSbzrnAKW6XM4qM2ATeFyXYoLMs1SvBNDtQCuCxbChjq6SndAdUSXsx_ySEuLKpPf06IHYEgL_VyyKa8An9lWlc");'>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-primary font-bold tracking-widest uppercase leading-none mb-1">Cadet</span>
+<div class="flex items-center gap-2">
+<!-- Level Chip -->
+<div class="flex h-6 items-center justify-center rounded-full bg-surface-dark border border-white/10 px-2.5">
+<span class="text-xs font-bold text-white tracking-wide">LVL 12</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Streak -->
+<div class="flex items-center gap-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1.5">
+<span class="material-symbols-outlined text-orange-500 text-lg">local_fire_department</span>
+<p class="text-orange-400 text-sm font-bold leading-none tracking-wide">45</p>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col gap-6 p-4 pt-6">
+<!-- Hero Section: Mastery Queue -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-white text-lg font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">target</span>
+                        MASTERY QUEUE
+                    </h2>
+<span class="text-xs font-mono text-slate-400">PRIORITY ALPHA</span>
+</div>
+<!-- Hero Card -->
+<div class="group relative rounded-xl bg-surface-dark border border-white/5 shadow-glow overflow-hidden">
+<!-- Image Area -->
+<div class="relative w-full h-48 bg-center bg-cover" data-alt="Abstract visualization of quantum particles colliding in blue and purple neon light" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmEAIGkhw9trLXTV-v1BKAiIneV8xDbOVPQpn8xe8tFrO9toLg1YnGwnKuYDoLYW4SyB3zJPUcQ3cjowYiWbuBtgi-tg_atx2sDKOJuU0zEEBe-uWbQRBPS7Q5EV37wyER-uqf0X80VyzntMLuiMssBbA2Ibg1zFMwRpM1A1hEpPsQH-3pK8gy-82Vwkb5yGSt1M9EWb_Ignu_iiojlyoZw68_roNUeRvbqvmhGzvMbkE-s1g4hSHLnUfLRv5BZzJsdgpjgSvuINE");'>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark via-surface-dark/50 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary/20 text-primary border border-primary/20 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Physics</span>
+<span class="bg-white/10 text-white border border-white/10 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Module 4</span>
+</div>
+<h3 class="text-2xl font-bold text-white leading-tight mb-1">QUANTUM PHYSICS 101</h3>
+<p class="text-slate-400 text-sm">Obj: Wave-Particle Duality</p>
+</div>
+</div>
+<!-- Stats & Action -->
+<div class="p-4 pt-2">
+<!-- Progress Bar Custom Neon -->
+<div class="mb-4">
+<div class="flex justify-between items-end mb-1.5">
+<span class="text-xs font-bold text-neon-green tracking-wider uppercase">Mastery Progress</span>
+<span class="text-sm font-bold text-white">82%</span>
+</div>
+<div class="h-2 w-full bg-black/40 rounded-full overflow-hidden border border-white/5">
+<div class="h-full bg-neon-green shadow-glow-green" style="width: 82%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Potential XP</span>
+<span class="text-primary font-bold text-lg">+450 XP</span>
+</div>
+<button class="flex-1 bg-primary hover:bg-primary/90 active:scale-95 transition-all text-white font-bold text-sm h-10 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                RESUME MISSION
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Grid Section: In-Progress Missions -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-white text-lg font-bold tracking-tight">ACTIVE MISSIONS</h2>
+<button class="text-primary text-xs font-bold tracking-wider hover:text-white transition-colors">VIEW ALL</button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Card 1 -->
+<div class="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group">
+<div class="h-24 w-full bg-cover bg-center relative" data-alt="Vintage world map with glowing tactical overlay markers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXEGENszpnFrltra6nrFHSmJ-tDsycE8h2acUmackYGw4GBbfF8RAddewyfD_WvLG0vYUs0FRR_boHU4ptjmhDJ5NutTcZNfCCQa3M-AIOLaaqJ_hiQamIGgfPFvB-V5gYiXxai84Pxrf_zqZf-Ne3Mrbpper0-bC_i16yNIQwe5xWi9WLKmAqcO9xtq1AOLRBKim4dclN0Cv-Ng2jhe8-JZsgL7fncBQtZIZtJ7jA9sRYYtQB0kpr6x94r_Owl8-pQY_padEfrBw");'>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur rounded px-1.5 py-0.5">
+<span class="text-[10px] font-bold text-white">LVL 4</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h4 class="text-white font-bold text-sm leading-snug mb-1">Galactic History</h4>
+<p class="text-slate-500 text-xs mb-3 truncate">Era: World War II</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+<span>SYNC</span>
+<span class="text-primary">45%</span>
+</div>
+<div class="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group">
+<div class="h-24 w-full bg-cover bg-center relative" data-alt="Digital representation of human DNA helix structure in blue" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIzj1LLeYYKc3gMGIsXiFok2_3wNYQWlfc_Kh8zjX5kn0oM1WnEs1ngx2yeV43xGmvDrstha06wxTgtg28CpvcelwccBSlidPxPovXsqwgi0ZkAWWomYHaqlaGoR-7BbcBGzObQrcdGu206QxRh7IEUTrBRIkpfDXE1tt5r7vpOSzKzcnsrBoEJS2Y0g_7m5IizP0By6Ai5VIpVv9W7opHuhdWQxanf6u0BsZ3gF4PhMKxb2P8vUNAgoLZreoaNMx4Oj8t8HTUlOg");'>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur rounded px-1.5 py-0.5">
+<span class="text-[10px] font-bold text-white">LVL 2</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h4 class="text-white font-bold text-sm leading-snug mb-1">Cyber-Biology</h4>
+<p class="text-slate-500 text-xs mb-3 truncate">Sub: Anatomy 101</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+<span>SYNC</span>
+<span class="text-orange-400">12%</span>
+</div>
+<div class="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-orange-400" style="width: 12%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group">
+<div class="h-24 w-full bg-cover bg-center relative" data-alt="Computer screen displaying python code with matrix effect" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByK3vKgTJ5cGjDF9W_Dcxj5YwO7iByRcTdu_exgC9B8BsQZlLwqMPmA4Jv9xiLurIfNZPQ1cs-giOBUTqD61XuEW22slwdc4lTC15_VsdSjIYERRKB4WQYq_8lGmplYc49wj0XaoLatwzLPEdIPUoNTOpuQ9obWt7hefNpkN4wnh2auZv6fLetcCpKEC-jRdqbgl_uhWaOE6jEvStkCZxmljwMtA52SjBe0iCEjVNlbSH6Zhygqf9hjqW0Yv0BDbpNA2AG5uX1yv4");'>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur rounded px-1.5 py-0.5">
+<span class="text-[10px] font-bold text-white">LVL 8</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h4 class="text-white font-bold text-sm leading-snug mb-1">Code Cracking</h4>
+<p class="text-slate-500 text-xs mb-3 truncate">Lang: Python Basics</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+<span>SYNC</span>
+<span class="text-neon-green">90%</span>
+</div>
+<div class="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-neon-green" style="width: 90%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group">
+<div class="h-24 w-full bg-cover bg-center relative" data-alt="Abstract geometric shapes floating in dark space" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCs-kprVi2gHiQkxpcZXj2bmB-mt5Y9o343-dOY5Ru42TiBFoii9sludgY8X69BOuuqx8bI1OzF3x2wOUVRBML1riBz9MzUyBY3YquGxnbB4KvcShveQUdNVgcb6z6siba3_r8_6we1QWzeeqERULP_t1aRR1o42rcTukZ6QU0u-C0O7DvnqzNV6KlgtCwcaI9tF1aND8SkeJxVVgW_BsqHLMyb_JDt1oR49Sk47Ot2Ghv-jLpRErODld_swFvX7FBhfTIP_vQjzvE");'>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur rounded px-1.5 py-0.5">
+<span class="text-[10px] font-bold text-white">LVL 5</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h4 class="text-white font-bold text-sm leading-snug mb-1">Algorithmic Math</h4>
+<p class="text-slate-500 text-xs mb-3 truncate">Sub: Calculus I</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+<span>SYNC</span>
+<span class="text-primary">60%</span>
+</div>
+<div class="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<div class="fixed bottom-6 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
+<div class="pointer-events-auto bg-surface-dark/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl px-6 py-3 flex items-center gap-8">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">dashboard</span>
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-400 text-2xl group-hover:text-white group-hover:scale-110 transition-all">radar</span>
+<span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-white"></span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-400 text-2xl group-hover:text-white group-hover:scale-110 transition-all">trophy</span>
+<span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-white"></span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-400 text-2xl group-hover:text-white group-hover:scale-110 transition-all">person</span>
+<span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-white"></span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

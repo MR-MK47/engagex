@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Flow State Arena</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "gaming-red": "#FF3B30",
+                        "gaming-orange": "#FF9500",
+                        "gaming-green": "#34C759",
+                        "gaming-gold": "#FFD60A",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow-gold': '0 0 15px rgba(255, 214, 10, 0.6)',
+                        'glow-primary': '0 0 20px rgba(19, 127, 236, 0.4)',
+                        'hud-panel': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(16, 25, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .progress-bar-striped {
+            background-image: linear-gradient(
+                45deg, 
+                rgba(255, 255, 255, .15) 25%, 
+                transparent 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, .15) 50%, 
+                rgba(255, 255, 255, .15) 75%, 
+                transparent 75%, 
+                transparent
+            );
+            background-size: 1rem 1rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #324d67; 
+            border-radius: 3px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden h-screen w-full flex flex-col relative">
+<!-- Top HUD Area -->
+<header class="absolute top-0 left-0 w-full z-20 p-4 pt-6 bg-gradient-to-b from-black/80 to-transparent">
+<div class="flex items-center justify-between mb-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm text-white border border-white/10">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="text-xs font-bold tracking-[0.2em] text-primary/80 uppercase">Module 04: Quantum Mechanics</div>
+<button class="flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors backdrop-blur-sm text-white border border-white/10">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<!-- Mastery Bar HUD -->
+<div class="flex flex-col gap-1 max-w-md mx-auto w-full">
+<div class="flex justify-between items-end px-1">
+<span class="text-[10px] font-bold tracking-widest text-gaming-gold drop-shadow-[0_0_5px_rgba(255,214,10,0.8)]">MASTERY LEVEL</span>
+<span class="text-[10px] font-bold text-white/60">XP GAINING...</span>
+</div>
+<div class="h-3 w-full bg-black/50 rounded-full border border-white/10 backdrop-blur-sm overflow-hidden relative shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]">
+<div class="absolute top-0 left-0 h-full bg-gaming-gold shadow-glow-gold rounded-full progress-bar-striped animate-[pulse_2s_infinite]" style="width: 65%;"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area (Video Player) -->
+<main class="flex-1 w-full h-full relative group/player">
+<!-- Video Background -->
+<div class="absolute inset-0 bg-black flex items-center justify-center overflow-hidden">
+<!-- Placeholder for video content -->
+<div class="absolute inset-0 bg-cover bg-center opacity-60" data-alt="Abstract 3D rendering of quantum particles in dark blue space" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5329JbLaVJbbeN0nmo7xzATyg5I6rXQk9smEa5jXgTz30q9-zIs95Pusx3FP39Nr6TtI27N8__roa4b3sa1dsBDYLeknLAKYhC8quLeG9REwCVjUSEdbkuS8b7XFx85m0SszO1TnEfhyyjdseSVwUE9-oQC33eA1R0IAHornGduQkxrW3HmHI_seKCEkzSkUpxw-3tkYM5JdLncVwht26v4DOnv2Tn8ZiAqmFN2Z0EvofWIxGz427Uy953sQ4DhrpOYAxqErJ77c");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+</div>
+<!-- Video Controls (Bottom) -->
+<div class="absolute bottom-0 left-0 w-full p-6 pb-8 z-20 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end justify-between">
+<div class="flex items-center gap-4">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[32px]">replay_10</span>
+</button>
+<div class="text-sm font-mono text-white/80">04:20 / 12:45</div>
+</div>
+<button class="size-14 flex items-center justify-center rounded-full bg-primary text-white shadow-glow-primary hover:scale-105 transition-transform">
+<span class="material-symbols-outlined !text-[32px] fill">play_arrow</span>
+</button>
+<div class="flex items-center gap-4">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[32px]">closed_caption</span>
+</button>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined !text-[32px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Confidence Check Overlay (Glassmorphism Modal) -->
+<!-- Logic: This would typically be conditionally rendered or hidden. Showing it active for the design task. -->
+<div class="absolute inset-0 z-30 flex items-center justify-center p-4 backdrop-blur-sm bg-black/40 animate-[fadeIn_0.5s_ease-out]">
+<div class="w-full max-w-sm glass-panel rounded-xl p-6 shadow-hud-panel border-t border-t-white/20 transform transition-all hover:scale-[1.02] duration-300">
+<!-- HUD Header -->
+<div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary animate-pulse">check_circle</span>
+<h3 class="text-lg font-bold text-white tracking-wide">CONFIDENCE CHECK</h3>
+</div>
+<div class="px-2 py-0.5 rounded bg-primary/20 border border-primary/30 text-[10px] text-primary font-mono">PAUSED</div>
+</div>
+<p class="text-slate-300 text-sm font-body mb-8 leading-relaxed text-center">
+                    Assess your understanding of the <span class="text-white font-bold">Wave Function Collapse</span> segment.
+                </p>
+<!-- Tactical Action Buttons -->
+<div class="flex flex-col gap-3">
+<!-- Button: Guessing -->
+<button class="group relative flex items-center justify-between w-full p-4 rounded-lg bg-black/40 border border-gaming-red/30 hover:bg-gaming-red/10 hover:border-gaming-red transition-all duration-200">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-gaming-red shadow-[0_0_8px_rgba(255,59,48,0.8)]"></div>
+<span class="text-white font-bold tracking-widest text-sm group-hover:text-gaming-red transition-colors">GUESSING</span>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover:text-gaming-red transition-colors text-lg">arrow_forward_ios</span>
+<div class="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/5 pointer-events-none"></div>
+</button>
+<!-- Button: Unsure -->
+<button class="group relative flex items-center justify-between w-full p-4 rounded-lg bg-black/40 border border-gaming-orange/30 hover:bg-gaming-orange/10 hover:border-gaming-orange transition-all duration-200">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-gaming-orange shadow-[0_0_8px_rgba(255,149,0,0.8)]"></div>
+<span class="text-white font-bold tracking-widest text-sm group-hover:text-gaming-orange transition-colors">UNSURE</span>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover:text-gaming-orange transition-colors text-lg">arrow_forward_ios</span>
+<div class="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/5 pointer-events-none"></div>
+</button>
+<!-- Button: Solid -->
+<button class="group relative flex items-center justify-between w-full p-4 rounded-lg bg-black/40 border border-gaming-green/30 hover:bg-gaming-green/10 hover:border-gaming-green transition-all duration-200 active:scale-[0.98]">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-gaming-green shadow-[0_0_8px_rgba(52,199,89,0.8)]"></div>
+<span class="text-white font-bold tracking-widest text-sm group-hover:text-gaming-green transition-colors">SOLID</span>
+</div>
+<span class="material-symbols-outlined text-white/20 group-hover:text-gaming-green transition-colors text-lg">bolt</span>
+<div class="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/5 pointer-events-none"></div>
+</button>
+</div>
+<div class="mt-6 flex justify-center">
+<button class="text-xs text-slate-500 hover:text-white transition-colors underline decoration-slate-600 underline-offset-4">Skip Assessment</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Decorative Scanline (Optional Sci-Fi effect) -->
+<div class="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+</body></html>

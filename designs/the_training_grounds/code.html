@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Training Grounds</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-glow": "#4facfe",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#0a0f14", // Deep charcoal/black
+                        "surface-dark": "#16202a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #ffffff05 1px, transparent 1px), linear-gradient(to bottom, #ffffff05 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neon-text-glow {
+            text-shadow: 0 0 10px rgba(19, 127, 236, 0.6);
+        }
+        .neon-box-glow {
+            box-shadow: 0 0 15px rgba(19, 127, 236, 0.2);
+        }
+        .neon-box-glow-strong {
+            box-shadow: 0 0 20px rgba(19, 127, 236, 0.5);
+        }
+        /* Custom scrollbar hide for clean mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden selection:bg-primary selection:text-white">
+<!-- Background Effects -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+<!-- Grid Pattern -->
+<div class="absolute inset-0 bg-grid-pattern bg-[size:40px_40px]"></div>
+<!-- Ambient Light Orbs -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[40%] rounded-full bg-primary/20 blur-[100px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[50%] rounded-full bg-purple-600/10 blur-[120px]"></div>
+</div>
+<div class="relative z-10 flex flex-col min-h-screen max-w-md mx-auto border-x border-white/5 bg-background-dark/80 backdrop-blur-sm shadow-2xl">
+<!-- Header / Top App Bar -->
+<header class="flex items-center justify-between p-5 pt-6 pb-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-white group">
+<span class="material-symbols-outlined group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-wide uppercase text-white/90">Training Grounds</h1>
+<button class="flex items-center justify-center size-10 rounded-full bg-white/5 hover:bg-white/10 transition-colors text-white">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<!-- HUD: Stats & Progress -->
+<section class="px-5 py-4 space-y-4">
+<!-- Top Row: Streak & Timer -->
+<div class="flex items-center justify-between">
+<!-- Streak Badge -->
+<div class="flex items-center gap-2 bg-gradient-to-r from-surface-dark to-surface-dark/50 border border-primary/30 rounded-full pl-3 pr-4 py-1.5 neon-box-glow">
+<span class="material-symbols-outlined text-yellow-400 filled text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div class="flex flex-col leading-none">
+<span class="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Streak</span>
+<span class="text-lg font-bold text-white neon-text-glow italic">5x</span>
+</div>
+</div>
+<!-- Timer -->
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-primary/80">Time Remaining</span>
+<div class="font-mono text-xl font-bold tracking-tight text-white tabular-nums">
+                        00:45
+                    </div>
+</div>
+</div>
+<!-- Mastery Progress -->
+<div class="space-y-1.5">
+<div class="flex justify-between items-end px-1">
+<span class="text-xs font-semibold uppercase tracking-wider text-blue-200/60">Mastery Progress</span>
+<span class="text-xs font-bold text-primary">Level 4</span>
+</div>
+<div class="h-2.5 w-full bg-[#1c2a38] rounded-full overflow-hidden border border-white/5 relative">
+<!-- Glow effect container -->
+<div class="absolute inset-0 bg-primary/10 w-[75%]"></div>
+<!-- Actual bar -->
+<div class="h-full bg-gradient-to-r from-blue-600 via-primary to-cyan-400 rounded-full relative shadow-[0_0_10px_#137fec]" style="width: 75%;">
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-white/50 blur-[1px]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Concept Card & Questions -->
+<main class="flex-1 flex flex-col px-5 pb-6 gap-6">
+<!-- Concept Card -->
+<div class="relative w-full mt-2 group perspective-1000">
+<!-- Card Background -->
+<div class="relative flex flex-col gap-4 p-6 rounded-[2rem] bg-[#16202a]/90 border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] backdrop-blur-xl overflow-hidden">
+<!-- Decorative corner accents -->
+<div class="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-white/10 rounded-tl-[2rem] pointer-events-none"></div>
+<div class="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-white/10 rounded-tr-[2rem] pointer-events-none"></div>
+<!-- Question Header -->
+<div class="flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-white/5 border border-white/5 text-xs font-medium text-gray-400 uppercase tracking-widest">
+                            Question 4/10
+                        </span>
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+</div>
+</div>
+<!-- Question Body -->
+<div class="space-y-4">
+<h2 class="text-2xl font-bold leading-tight text-white drop-shadow-md">
+                            Which React hook is best suited for handling side effects?
+                        </h2>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            Consider scenarios like data fetching, subscriptions, or manually changing the DOM.
+                        </p>
+</div>
+<!-- Optional Code Snippet Visual (Abstract) -->
+<div class="w-full h-2 bg-gradient-to-r from-primary/20 via-primary/5 to-transparent rounded-full mt-2"></div>
+</div>
+</div>
+<!-- Interaction Zone: Answers -->
+<div class="flex flex-col gap-3 mt-auto">
+<!-- Option A -->
+<button class="group relative flex items-center w-full p-1 rounded-full bg-[#1c2630] border border-white/5 hover:border-primary/50 transition-all duration-200 active:scale-[0.98]">
+<div class="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/5 transition-colors"></div>
+<div class="flex items-center justify-center size-12 rounded-full bg-[#233648] text-gray-400 font-bold group-hover:text-primary transition-colors shrink-0 ml-1">
+                        A
+                    </div>
+<span class="flex-1 text-left px-4 text-lg font-medium text-gray-300 group-hover:text-white">useState</span>
+<div class="mr-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+</div>
+</button>
+<!-- Option B (Selected State Example) -->
+<button class="group relative flex items-center w-full p-1 rounded-full bg-[#1c2630] border border-primary shadow-[0_0_15px_rgba(19,127,236,0.25)] transition-all duration-200 scale-[1.02]">
+<div class="absolute inset-0 rounded-full bg-primary/10"></div>
+<div class="flex items-center justify-center size-12 rounded-full bg-primary text-white font-bold shadow-lg shrink-0 ml-1">
+                        B
+                    </div>
+<span class="flex-1 text-left px-4 text-lg font-bold text-white">useEffect</span>
+<div class="mr-4 text-primary animate-pulse">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Option C -->
+<button class="group relative flex items-center w-full p-1 rounded-full bg-[#1c2630] border border-white/5 hover:border-primary/50 transition-all duration-200 active:scale-[0.98]">
+<div class="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/5 transition-colors"></div>
+<div class="flex items-center justify-center size-12 rounded-full bg-[#233648] text-gray-400 font-bold group-hover:text-primary transition-colors shrink-0 ml-1">
+                        C
+                    </div>
+<span class="flex-1 text-left px-4 text-lg font-medium text-gray-300 group-hover:text-white">useContext</span>
+<div class="mr-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+</div>
+</button>
+<!-- Option D -->
+<button class="group relative flex items-center w-full p-1 rounded-full bg-[#1c2630] border border-white/5 hover:border-primary/50 transition-all duration-200 active:scale-[0.98]">
+<div class="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/5 transition-colors"></div>
+<div class="flex items-center justify-center size-12 rounded-full bg-[#233648] text-gray-400 font-bold group-hover:text-primary transition-colors shrink-0 ml-1">
+                        D
+                    </div>
+<span class="flex-1 text-left px-4 text-lg font-medium text-gray-300 group-hover:text-white">useReducer</span>
+<div class="mr-4 opacity-0 group-hover:opacity-100 transition-opacity text-primary">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+</div>
+</button>
+</div>
+<!-- Submit Action -->
+<button class="w-full py-4 mt-2 rounded-full bg-primary text-white font-bold text-lg tracking-wide uppercase hover:bg-blue-600 transition-colors shadow-[0_0_20px_rgba(19,127,236,0.4)] hover:shadow-[0_0_30px_rgba(19,127,236,0.6)] active:translate-y-0.5 flex items-center justify-center gap-2">
+<span>Lock Answer</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</main>
+</div>
+</body></html>
