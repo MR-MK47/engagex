@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Sidebar } from "../components/ui/Sidebar";
 
 export default function Dashboard() {
     const { user, signOut } = useAuth();
+    const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const handleLogout = () => {
@@ -137,9 +139,12 @@ export default function Dashboard() {
                                 <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Potential XP</span>
                                 <span className="text-primary font-bold text-lg">+450 XP</span>
                             </div>
-                            <button className="flex-1 bg-primary hover:bg-primary/90 active:scale-95 transition-all text-white font-bold text-sm h-10 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-primary/25 cursor-not-allowed">
-                                <span className="material-symbols-outlined text-[18px]">play_arrow</span>
-                                RESUME MISSION
+                            <button
+                                onClick={() => navigate("/mission-briefing")}
+                                className="flex-1 bg-primary hover:bg-primary/90 active:scale-95 transition-all text-white font-bold text-sm h-10 px-6 rounded-full flex items-center justify-center gap-2 shadow-lg shadow-primary/25 group"
+                            >
+                                <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">rocket_launch</span>
+                                START NEW MISSION
                             </button>
                         </div>
                     </div>
@@ -197,28 +202,6 @@ export default function Dashboard() {
                     </div>
                 </div>
             </section>
-
-            {/* Bottom Navigation */}
-            <div className="fixed bottom-6 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
-                <div className="pointer-events-auto bg-surface-dark/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl px-6 py-3 flex items-center gap-8">
-                    <button className="flex flex-col items-center gap-1 group">
-                        <span className="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">dashboard</span>
-                        <span className="w-1 h-1 rounded-full bg-primary"></span>
-                    </button>
-                    <button className="flex flex-col items-center gap-1 group">
-                        <span className="material-symbols-outlined text-slate-400 text-2xl group-hover:text-white group-hover:scale-110 transition-all">radar</span>
-                        <span className="w-1 h-1 rounded-full bg-transparent group-hover:bg-white"></span>
-                    </button>
-                    <button className="flex flex-col items-center gap-1 group">
-                        <span className="material-symbols-outlined text-slate-400 text-2xl group-hover:text-white group-hover:scale-110 transition-all">trophy</span>
-                        <span className="w-1 h-1 rounded-full bg-transparent group-hover:bg-white"></span>
-                    </button>
-                    <button className="flex flex-col items-center gap-1 group">
-                        <span className="material-symbols-outlined text-slate-400 text-2xl group-hover:text-white group-hover:scale-110 transition-all">person</span>
-                        <span className="w-1 h-1 rounded-full bg-transparent group-hover:bg-white"></span>
-                    </button>
-                </div>
-            </div>
         </div>
     );
 }
