@@ -8,21 +8,21 @@ This document outlines the step-by-step execution plan for building **EngageX**,
 **Goal**: Establish the technical groundwork for the application.
 
 ### 1.1 Project Initialization
-- [ ] Initialize React + Vite project (TypeScript).
-- [ ] Configure Tailwind CSS v4 (or v3.4+) with custom design tokens (colors, typography) matching the "Mission Control" aesthetic.
-- [ ] Setup ESLint, Prettier, and Husky for code quality.
-- [ ] Initialize Git repository.
+- [x] Initialize React + Vite project (TypeScript).
+- [x] Configure Tailwind CSS v4 (or v3.4+) with custom design tokens (colors, typography) matching the "Mission Control" aesthetic.
+- [x] Setup ESLint, Prettier, and Husky for code quality.
+- [x] Initialize Git repository.
 
 ### 1.2 Architecture Setup
-- [ ] Define directory structure (`/src/components`, `/src/pages`, `/src/services`, `/src/hooks`, `/src/context`).
-- [ ] Install and configure `react-router-dom` for navigation.
-- [ ] Create core route definitions (Auth, Dashboard, Mission, etc.).
+- [x] Define directory structure (`/src/components`, `/src/pages`, `/src/services`, `/src/hooks`, `/src/context`).
+- [x] Install and configure `react-router-dom` for navigation.
+- [x] Create core route definitions (Auth, Dashboard, Mission, etc.).
 
 ### 1.3 Firebase Integration
-- [ ] Create Firebase project (if not exists).
-- [ ] Register web app in Firebase Console.
-- [ ] Add Firebase SDK to project.
-- [ ] Create `src/lib/firebase.ts` and initialize Authentication and Firestore services.
+- [x] Create Firebase project (if not exists).
+- [x] Register web app in Firebase Console.
+- [x] Add Firebase SDK to project.
+- [x] Create `src/lib/firebase.ts` and initialize Authentication and Firestore services.
 
 ---
 
@@ -30,16 +30,16 @@ This document outlines the step-by-step execution plan for building **EngageX**,
 **Goal**: Build the visual language and reusable components.
 
 ### 2.1 Design Tokens & Global Styles
-- [ ] Define CSS variables for theme colors (Dark, Neon accents).
-- [ ] Setup typography hierarchy (Inter/Roboto/Outfit).
-- [ ] Create base styles for dark mode optimization.
+- [x] Define CSS variables for theme colors (Dark, Neon accents).
+- [/] Setup typography hierarchy (Inter/Roboto/Outfit).
+- [x] Create base styles for dark mode optimization.
 
 ### 2.2 Atomic Components
-- [ ] **Buttons**: Primary (Mission Action), Secondary, Ghost.
-- [ ] **Inputs**: Text fields (Email, YouTube URL), Password fields.
-- [ ] **Cards**: Mission cards, Stat cards.
-- [ ] **Progress**: Mastery Bar component, XP bars.
-- [ ] **layout**: Container, Grid system, mobile-first wrappers.
+- [x] **Buttons**: Primary (Mission Action), Secondary, Ghost.
+- [x] **Inputs**: Text fields (Email, YouTube URL), Password fields.
+- [x] **Cards**: Mission cards, Stat cards.
+- [x] **Progress**: Mastery Bar component, XP bars.
+- [x] **layout**: Container, Grid system, mobile-first wrappers.
 
 ---
 
@@ -47,13 +47,13 @@ This document outlines the step-by-step execution plan for building **EngageX**,
 **Goal**: Enable user access and main dashboard navigation.
 
 ### 3.1 Authentication (Entry Portal)
-- [ ] Implement **Entry Portal** [Screen 1].
-- [ ] Integrate Firebase Auth (Email/Password, Google Sign-in).
-- [ ] Create AuthProvider context for session management.
-- [ ] Implement Protected Routes logic.
+- [x] Implement **Entry Portal** [Screen 1].
+- [x] Integrate Firebase Auth (Email/Password, Google Sign-in).
+- [x] Create AuthProvider context for session management.
+- [x] Implement Protected Routes logic.
 
 ### 3.2 Command Deck (Dashboard)
-- [ ] Implement **Command Deck** [Screen 2].
+- [x] Implement **Command Deck** [Screen 2].
 - [ ] Build Header with User Stats (Level, XP).
 - [ ] Create "Current Mission" and "Mastery Queue" sections.
 - [ ] Connect "Start New Mission" button to Mission Briefing.

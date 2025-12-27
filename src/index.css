@@ -1,15 +1,94 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   color-scheme: dark;
 }
 
-body {
-  @apply bg-background text-text font-sans antialiased overflow-x-hidden;
+@theme {
+  /* Colors */
+  --color-primary: #137fec;
+  --color-secondary: #7000ff;
+  --color-background-light: #f6f7f8;
+  --color-background-dark: #101922;
+  --color-surface-dark: #192633;
+  --color-neon-green: #39ff14;
+
+  --color-background: var(--color-background-dark);
+  --color-text: #ffffff;
+  --color-muted: #94a3b8;
+
+  /* Fonts */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Noto Sans", sans-serif;
+  --font-sans: var(--font-body);
+
+  /* Border Radius */
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  /* Shadows */
+  --shadow-glow: 0 0 20px -5px rgba(19, 127, 236, 0.3);
+  --shadow-glow-green: 0 0 15px -3px rgba(57, 255, 20, 0.2);
+
+  /* Animations */
+  --animate-orb-pulse: orb-pulse 4s infinite ease-in-out;
+  --animate-float: float 6s infinite ease-in-out;
+
+  @keyframes orb-pulse {
+    0% {
+      box-shadow: 0 0 15px 2px rgba(19, 127, 236, 0.2);
+      transform: scale(1);
+    }
+
+    50% {
+      box-shadow: 0 0 35px 8px rgba(19, 127, 236, 0.5);
+      transform: scale(1.02);
+    }
+
+    100% {
+      box-shadow: 0 0 15px 2px rgba(19, 127, 236, 0.2);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
 }
 
-#root {
-  @apply min-h-screen flex flex-col;
+/* Base Styles */
+body {
+  @apply bg-background-dark text-white font-body antialiased overflow-x-hidden;
+  min-height: 100vh;
+}
+
+/* Custom Utilities */
+@utility glass-panel {
+  background: rgba(16, 25, 34, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+@utility orb-glow {
+  animation: var(--animate-orb-pulse);
+}
+
+@utility floating {
+  animation: var(--animate-float);
+}
+
+@utility cyber-grid-bg {
+  background-image: linear-gradient(rgba(19, 127, 236, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 127, 236, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
