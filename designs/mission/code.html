@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EngageX - Active Watch State</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "primary-dark": "#0987b0",
+                        "secondary-success": "#10b981",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#16262c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem", 
+                        "lg": "0.25rem", 
+                        "xl": "0.5rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(13, 185, 242, 0.5), 0 0 20px rgba(13, 185, 242, 0.3)',
+                        'neon-sm': '0 0 5px rgba(13, 185, 242, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101e22; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #315a68; 
+        }
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.1)
+            );
+            background-size: 100% 4px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-white font-display overflow-hidden select-none">
+<div class="relative flex flex-col h-screen max-w-md mx-auto bg-background-dark border-x border-[#315a68]/20 shadow-2xl">
+<div class="flex items-center justify-between p-4 pt-6 bg-[#101e22]/90 backdrop-blur-sm z-20">
+<button class="group flex items-center text-[#90bccb] hover:text-primary transition-colors">
+<div class="w-8 h-8 flex items-center justify-center rounded border border-[#315a68]/40 bg-[#16262c] group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-xl group-hover:-translate-x-0.5 transition-transform">chevron_left</span>
+</div>
+</button>
+<div class="flex-1 mx-4 overflow-hidden relative h-8 items-center flex justify-center">
+<div class="text-center px-4 py-1 rounded border border-[#315a68]/20 bg-[#16262c]/50">
+<span class="text-primary text-xs font-bold tracking-[0.1em] uppercase shadow-primary drop-shadow-[0_0_5px_rgba(13,185,242,0.3)] truncate block">
+                        MISSION: RECURSION
+                    </span>
+</div>
+</div>
+<div class="w-8 h-8 flex items-center justify-center rounded border border-[#315a68]/40 bg-[#16262c]">
+<span class="material-symbols-outlined text-[#90bccb] text-sm">settings</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col overflow-y-auto relative no-scrollbar pb-32">
+<div class="p-4 mt-2">
+<div class="relative w-full aspect-video bg-black/40 rounded border border-[#315a68]/50 overflow-hidden group">
+<div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl z-20 shadow-neon-sm"></div>
+<div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-primary rounded-tr z-20 shadow-neon-sm"></div>
+<div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-primary rounded-bl z-20 shadow-neon-sm"></div>
+<div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br z-20 shadow-neon-sm"></div>
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Code editor interface showing a recursion function in Python with syntax highlighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvfbOgGVyc73zaH6lfP8abfTj0AH_pkOc8m-WDcJqh6D_mo2aQw_ZHivfRhjdCBbJkuOqUaDYKSjmbhjFr7N7jb_k4_VqVTwqJzrULZ3KU2r5wpVYYoO4Z1Pi-rphdrdMYocrpzkBirGulMuYxDWGo1ZcvzBmixIyc02FjWV2P7QC4kI4FD9jxdIS2uu2jO866p5rj3qdcBISTzT4sjb5yTFotX1ekLzN0sgjoBL3iH5ZjSNbxBH_slj4Qf3USfcShvTFBGKI5LhU");'>
+</div>
+<div class="absolute inset-0 scanlines opacity-30 pointer-events-none z-10"></div>
+<div class="absolute inset-0 flex flex-col justify-between p-3 z-20">
+<div class="flex justify-between items-start">
+<span class="text-[10px] bg-red-500/20 text-red-400 px-1 py-0.5 rounded border border-red-500/30 font-mono">REC ●</span>
+<span class="text-[10px] text-primary/80 font-mono">CAM_02 [ACTIVE]</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md border border-primary flex items-center justify-center hover:bg-primary/30 transition-all shadow-neon">
+<span class="material-symbols-outlined text-white text-4xl ml-1">play_arrow</span>
+</button>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="text-[10px] text-[#90bccb] font-mono">BUFFERING: 100%</span>
+<span class="text-xs text-white font-bold tracking-wider font-mono">04:20 / 12:45</span>
+</div>
+<span class="material-symbols-outlined text-white/70 text-lg">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">terminal</span>
+<h3 class="text-[#90bccb] text-xs font-bold tracking-[0.15em] uppercase">Mission Parameters</h3>
+<div class="flex-1 h-[1px] bg-[#315a68]/50"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-[#16262c]/50 p-3 rounded border border-[#315a68]/30 flex flex-col gap-1">
+<span class="text-[#5c7c8a] text-[10px] uppercase tracking-wider">Subject</span>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+<span class="text-white text-sm font-bold">CompSci</span>
+</div>
+</div>
+<div class="bg-[#16262c]/50 p-3 rounded border border-[#315a68]/30 flex flex-col gap-1">
+<span class="text-[#5c7c8a] text-[10px] uppercase tracking-wider">XP Reward</span>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+<span class="text-white text-sm font-bold">500 XP</span>
+</div>
+</div>
+<div class="col-span-2 bg-[#16262c]/50 p-3 rounded border border-[#315a68]/30 flex justify-between items-center">
+<div class="flex flex-col gap-1">
+<span class="text-[#5c7c8a] text-[10px] uppercase tracking-wider">Difficulty Rating</span>
+<span class="text-red-400 text-sm font-bold tracking-wide">HARDCORE</span>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-4 bg-red-500 rounded-sm"></div>
+<div class="w-2 h-4 bg-red-500 rounded-sm"></div>
+<div class="w-2 h-4 bg-red-500 rounded-sm"></div>
+<div class="w-2 h-4 bg-[#315a68] rounded-sm"></div>
+</div>
+</div>
+</div>
+<div class="mt-4 p-4 bg-[#16262c] rounded border-l-2 border-primary">
+<p class="text-[#90bccb] text-xs leading-relaxed font-normal">
+<strong class="text-white">BRIEFING:</strong> Base case analysis is critical for recursion stability. Failure to identify exit conditions will result in infinite loops. Pay attention to the stack trace visualization at T-Minus 06:00.
+                    </p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 bg-[#101e22]/95 backdrop-blur border-t border-[#315a68]/50 p-4 pb-8 z-30">
+<div class="flex flex-col gap-2">
+<div class="flex gap-0.5 h-3 w-full mb-1">
+<div class="flex-1 bg-secondary-success shadow-[0_0_8px_rgba(16,185,129,0.5)] rounded-sm"></div>
+<div class="flex-1 bg-secondary-success shadow-[0_0_8px_rgba(16,185,129,0.5)] rounded-sm"></div>
+<div class="flex-1 bg-secondary-success shadow-[0_0_8px_rgba(16,185,129,0.5)] rounded-sm"></div>
+<div class="flex-1 bg-secondary-success shadow-[0_0_8px_rgba(16,185,129,0.5)] rounded-sm"></div>
+<div class="flex-1 bg-secondary-success shadow-[0_0_8px_rgba(16,185,129,0.5)] rounded-sm"></div>
+<div class="flex-1 bg-secondary-success shadow-[0_0_8px_rgba(16,185,129,0.5)] rounded-sm"></div>
+<div class="flex-1 bg-primary animate-pulse shadow-neon rounded-sm"></div>
+<div class="flex-1 bg-[#315a68]/40 rounded-sm"></div>
+<div class="flex-1 bg-[#315a68]/40 rounded-sm"></div>
+<div class="flex-1 bg-[#315a68]/40 rounded-sm"></div>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-[#5c7c8a] text-[10px] font-mono tracking-widest uppercase">Mastery Progress</p>
+<p class="text-[#90bccb] text-xs font-mono font-medium">T-MINUS 04:20</p>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

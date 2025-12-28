@@ -9,7 +9,12 @@ export default {
             colors: {
                 background: '#0a0a0f', // Deep space dark
                 surface: '#12121a',    // Slightly lighter panel
-                primary: '#00f0ff',    // Cyberpunk cyan
+                primary: '#0db9f2',    // Updated to design primary
+                'primary-dark': '#0987b0', // New design color
+                'secondary-success': '#10b981', // New design color
+                'background-light': '#f5f8f8', // New design color
+                'background-dark': '#101e22', // New design color (overrides/complements existing background)
+                'surface-dark': '#16262c', // New design color
                 secondary: '#7000ff',  // Deep neon purple
                 success: '#00ff9d',    // Neon green
                 warning: '#ffb600',
@@ -19,7 +24,8 @@ export default {
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'], // For code/stats
+                mono: ['JetBrains Mono', 'monospace'],
+                display: ['Space Grotesk', 'sans-serif'], // Added from design
             }
         },
     },
