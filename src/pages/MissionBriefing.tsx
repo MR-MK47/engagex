@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { extractVideoId, fetchVideoMetadata } from "../services/youtube";
@@ -10,13 +10,17 @@ export default function MissionBriefing() {
     const [statusText, setStatusText] = useState("AWAITING TARGET DATA...");
     const navigate = useNavigate();
 
-
+    // Prevent React Strict Mode double-firing
+    const isProcessingRef = useRef(false);
 
     const videoId = extractVideoId(url);
     const active = !!videoId;
 
     const handleAnalyze = async () => {
-        if (!active || isAnalyzing || !videoId) return;
+        if (!active || isAnalyzing || !videoId || isProcessingRef.current) return;
+
+        // Set the guard immediately
+        isProcessingRef.current = true;
         setIsAnalyzing(true);
 
         try {
@@ -43,6 +47,7 @@ export default function MissionBriefing() {
             console.error("Analysis Failed", error);
             setStatusText("UPLINK FAILED. RETRY.");
             setIsAnalyzing(false);
+            isProcessingRef.current = false; // Reset guard on error
         }
     };
 

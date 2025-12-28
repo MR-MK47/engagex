@@ -1,9 +1,11 @@
+import { useRef, useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import YouTube from "react-youtube";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { type VideoMetadata } from "../services/youtube";
-import { type MissionContent } from "../services/gemini";
+import { type MissionContent, type Question } from "../services/gemini";
+import { TrainingGrounds } from "../components/mission/TrainingGrounds";
 
 interface LocationState {
     metadata: VideoMetadata;
@@ -16,8 +18,17 @@ export default function LearningMission() {
     const navigate = useNavigate();
     const { metadata, briefing } = (location.state as LocationState) || {};
 
-    // Redirect if no data (user navigated directly or refresh)
-    // In a real app we would fetch if missing
+    // Player State
+    const playerRef = useRef<any>(null);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [activeQuestion, setActiveQuestion] = useState<Question | null>(null);
+    const [completedQuestions, setCompletedQuestions] = useState<string[]>([]);
+
+    // Checkpoints (from Gemini questions)
+    const checkpoints = briefing?.questions || [];
+
+    // Redirect if no data
     if (!metadata || !briefing) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-background-dark text-white p-6 text-center">
@@ -29,12 +40,59 @@ export default function LearningMission() {
         );
     }
 
+    // Monitor Player Time
+    useEffect(() => {
+        let interval: any;
+
+        if (isPlaying && playerRef.current) {
+            interval = setInterval(async () => {
+                const time = await playerRef.current.getCurrentTime();
+                setCurrentTime(time);
+
+                // Check for checkpoints
+                const upcomingCheckpoint = checkpoints.find(q =>
+                    !completedQuestions.includes(q.id) &&
+                    Math.abs(time - q.timestamp) < 1 // Within 1 second window
+                );
+
+                if (upcomingCheckpoint) {
+                    playerRef.current.pauseVideo();
+                    setIsPlaying(false);
+                    setActiveQuestion(upcomingCheckpoint);
+                }
+            }, 1000);
+        }
+
+        return () => clearInterval(interval);
+    }, [isPlaying, checkpoints, completedQuestions]);
+
+    const handlePlayerReady = (event: any) => {
+        playerRef.current = event.target;
+        // Optionally start playing immediately
+        // event.target.playVideo();
+    };
+
+    const handlePlayerStateChange = (event: any) => {
+        // 1 = Playing, 2 = Paused
+        setIsPlaying(event.data === 1);
+    };
+
+    const handleQuestionComplete = (correct: boolean) => {
+        if (activeQuestion) {
+            setCompletedQuestions(prev => [...prev, activeQuestion.id]);
+        }
+        setActiveQuestion(null);
+        if (playerRef.current) {
+            playerRef.current.playVideo();
+        }
+    };
+
     const playerOptions = {
         height: '100%',
         width: '100%',
         playerVars: {
             autoplay: 1,
-            controls: 1, // Keep YouTube controls for now
+            controls: 1,
             modestbranding: 1,
             origin: window.location.origin,
         },
@@ -46,7 +104,7 @@ export default function LearningMission() {
             <header className="h-16 flex items-center justify-between px-6 border-b border-white/10 bg-surface-dark z-20">
                 <div className="flex items-center gap-4">
                     <button
-                        onClick={() => navigate("/dashboard")}
+                        onClick={() => navigate("/mission-briefing")}
                         className="text-slate-400 hover:text-white flex items-center gap-2 group"
                     >
                         <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
@@ -71,12 +129,25 @@ export default function LearningMission() {
             <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
 
                 {/* Video Player Area */}
-                <div className="flex-1 bg-black relative flex items-center justify-center">
+                <div className="flex-1 bg-black relative flex items-center justify-center touch-manipulation">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent to-black/80 z-10 pointer-events-none"></div>
-                    <div className="w-full h-full max-w-5xl max-h-[calc(100vh-140px)] aspect-video bg-black rounded-lg overflow-hidden border border-white/5 relative z-0">
+
+                    {/* Training Grounds Overlay */}
+                    <AnimatePresence>
+                        {activeQuestion && (
+                            <TrainingGrounds
+                                question={activeQuestion}
+                                onComplete={handleQuestionComplete}
+                            />
+                        )}
+                    </AnimatePresence>
+
+                    <div className="w-full h-full max-w-5xl max-h-[55vh] lg:max-h-[calc(100vh-140px)] aspect-video bg-black rounded-lg overflow-hidden border border-white/5 relative z-0">
                         <YouTube
                             videoId={missionId}
                             opts={playerOptions}
+                            onReady={handlePlayerReady}
+                            onStateChange={handlePlayerStateChange}
                             className="w-full h-full"
                             title={metadata.title}
                         />
@@ -84,7 +155,7 @@ export default function LearningMission() {
                 </div>
 
                 {/* Mission Intel Sidebar (Desktop) / Bottom Sheet (Mobile) - Simplified as sidebar for now */}
-                <div className="w-full lg:w-[400px] bg-surface-dark border-l border-white/10 flex flex-col overflow-y-auto relative z-20">
+                <div className="w-full lg:w-[400px] h-auto max-h-[40vh] lg:max-h-none bg-surface-dark border-l border-white/10 flex flex-col lg:overflow-y-auto overflow-y-auto overflow-x-hidden relative z-10 lg:z-20 touch-pan-y">
                     <div className="p-6">
                         <div className="mb-6">
                             <h2 className="text-xs font-bold text-primary tracking-widest mb-3 flex items-center gap-2">

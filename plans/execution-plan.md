@@ -64,18 +64,18 @@ This document outlines the step-by-step execution plan for building **EngageX**,
 **Goal**: Build the Learning Mission player and AI integration.
 
 ### 4.1 Mission Briefing
-- [ ] Implement **Mission Briefing** [Screen 3].
-- [ ] Create YouTube URL input with validation.
-- [ ] Integrate YouTube Data API (to fetch video metadata).
+- [x] Implement **Mission Briefing** [Screen 3].
+- [x] Create YouTube URL input with validation.
+- [x] Integrate YouTube Data API (to fetch video metadata).
 
 ### 4.2 AI Service integration
-- [ ] Setup Google Gemini API client.
-- [ ] Create prompt templates for transcript analysis and question generation.
-- [ ] Implement service functions to fetch/parse video transcripts (using third-party API or serverless function if needed).
+- [x] Setup Google Gemini API client.
+- [x] Create prompt templates for transcript analysis and question generation.
+- [x] Implement service functions to fetch/parse video transcripts (using third-party API or serverless function if needed).
 
 ### 4.3 Learning Mission Player
-- [ ] Implement **Learning Mission** [Screen 4].
-- [ ] Integrate `react-youtube` for embed control.
+- [x] Implement **Learning Mission** [Screen 4].
+- [x] Integrate `react-youtube` for embed control.
 - [ ] Implement "Checkpoint" logic (monitoring timestamp).
 - [ ] Create visual cues for upcoming checkpoints on the timeline (custom controls).
 
