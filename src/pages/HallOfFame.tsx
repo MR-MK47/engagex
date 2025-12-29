@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { cn } from "../lib/utils";
 
 // --- Types ---
@@ -44,17 +43,15 @@ export default function HallOfFame() {
     const [filter, setFilter] = useState<"Global" | "Friends" | "Squads">("Global");
 
     return (
-        <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display flex flex-col pb-24 selection:bg-primary selection:text-white">
+        <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display flex flex-col pb-48 selection:bg-primary selection:text-white">
 
-            {/* Top App Bar */}
+            {/* Top App Bar - No Back Button as per request */}
             <div className="sticky top-0 z-50 bg-[#101922]/90 backdrop-blur-md border-b border-white/5 p-4 flex items-center justify-between">
-                <Link to="/dashboard" className="flex size-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white">
-                    <span className="material-symbols-outlined text-2xl">arrow_back</span>
-                </Link>
+                <div className="size-10"></div> {/* Spacer for symmetry */}
                 <h2 className="text-lg font-bold tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Hall of Fame</h2>
-                <button className="flex size-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors text-white">
-                    <span className="material-symbols-outlined text-2xl">search</span>
-                </button>
+                <div className="size-10 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-2xl text-slate-400">search</span>
+                </div>
             </div>
 
             {/* Segmented Filter Buttons */}
@@ -228,12 +225,21 @@ export default function HallOfFame() {
                         </div>
                     </div>
                 ))}
+
+                {/* Rank Gap Visual - Fixed Layout */}
+                <div className="flex flex-col items-center justify-center py-8 gap-2 opacity-60">
+                    <div className="w-0.5 h-6 bg-gradient-to-b from-slate-600 to-transparent"></div>
+                    <div className="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full border border-white/5 bg-[#101922]/50">
+                        <span>Top 10% Zone</span>
+                    </div>
+                    <div className="w-0.5 h-6 bg-gradient-to-b from-transparent to-primary"></div>
+                </div>
             </div>
 
-            {/* Sticky User Stats Bar */}
-            <div className="fixed bottom-0 left-0 w-full z-40 px-4 pb-6 pt-2">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#101922] via-[#101922]/95 to-transparent pointer-events-none"></div>
-                <div className="relative flex items-center justify-between p-3 rounded-xl bg-primary/10 backdrop-blur-xl border border-primary/50 shadow-[0_0_20px_rgba(19,127,236,0.25)]">
+            {/* Sticky User Stats Bar - Raised to sit clearly above BottomNav */}
+            <div className="fixed bottom-[110px] left-0 w-full z-40 px-4 pb-0 pt-2 pointer-events-none">
+                {/* Wrapper is pointer-events-none to let touches pass through empty areas if any, inner is auto */}
+                <div className="relative pointer-events-auto flex items-center justify-between p-4 rounded-2xl bg-[#101922] border-2 border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
                     <div className="flex items-center gap-4 flex-1 min-w-0">
                         <span className="w-6 text-xl font-bold text-primary text-center font-mono">{USER_STATS.rank}</span>
                         <div className="relative shrink-0">

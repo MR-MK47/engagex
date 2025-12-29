@@ -163,9 +163,9 @@ export default function Dashboard() {
                         onClick={() => navigate('/knowledge-map')}
                         className="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group cursor-pointer"
                     >
-                        <div className="h-24 w-full bg-cover bg-center relative" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCortvHfEbdA5jf2u2gDb8NYA-UISh_joVB5fsD03XEMGcxCELOEIjQg8RUdeGek8tCKDVfuM0U3xi2Dm2NXYvdAEg6g8hg3AgzeruewjjM3x1HLEOaEbkD31kwYEh35-e2pFy5cF6jIv0bkjjVFWrJUdeMjII35mNUscHm7HA1wLPnkICE7G-abx5CWuVG6ht5DuPp1loIdZs62xSnRwrJNJFFtr2lQWjw7kl3gYuKGs1gdwk_6Iq0j_uwhpguQPHkuAkm9SNxWmY")' }}>
+                        <div className="h-24 w-full bg-cover bg-center relative" style={{ backgroundImage: 'url("https://gamify.keep.edu.hk/asset-v1:CUHK+CSCI2100A+2021_02+type@asset+block@Data-structures.jpg")' }}>
                             <div className="absolute top-2 right-2 bg-black/60 backdrop-blur rounded px-1.5 py-0.5">
-                                <span className="text-[10px] font-bold text-white">CORE</span>
+                                <span className="text-[10px] font-bold text-white">LVL 3</span>
                             </div>
                         </div>
                         <div className="p-3 flex flex-col flex-1">
@@ -174,7 +174,7 @@ export default function Dashboard() {
                             <div className="mt-auto">
                                 <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
                                     <span>STATUS</span>
-                                    <span className="text-primary">ACTIVE</span>
+                                    <span className="text-primary">70%</span>
                                 </div>
                                 <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
                                     <div className="h-full bg-primary" style={{ width: '65%' }}></div>

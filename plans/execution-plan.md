@@ -116,8 +116,8 @@ This document outlines the step-by-step execution plan for building **EngageX**,
 - [✅] Display session history and aggregate stats.
 
 ### 6.3 Settings
-- [ ] Implement **Settings & System Controls** [Screen 9].
-- [ ] Account management and support links.
+- [✅] Implement **Settings & System Controls** [Screen 9].
+- [✅] Account management and support links.
 
 ### 6.4 UX Refinement
 - [ ] Add micro-animations (Framer Motion).
