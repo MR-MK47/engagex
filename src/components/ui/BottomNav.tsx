@@ -11,8 +11,8 @@ export function BottomNav() {
     const isBriefing = path === "/mission-briefing";
     const isMission = path.includes("/mission/");
 
-    // Hide on Learning Mission page (active mission)
-    if (isMission) {
+    // Hide on Learning Mission page (active mission) and Knowledge Map
+    if (isMission || path === "/knowledge-map") {
         return null;
     }
 

@@ -62,7 +62,6 @@ export const generateMissionBriefing = async (videoTitle: string, videoDescripti
         // Access response text - it's a getter property in the new SDK
         const text = response.text || "";
 
-        console.log("Raw Gemini Response (first 500 chars):", text.substring(0, 500));
 
         // Clean markdown and common JSON issues
         let jsonString = text

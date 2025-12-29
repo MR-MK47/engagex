@@ -158,6 +158,30 @@ export default function Dashboard() {
                     <button className="text-primary text-xs font-bold tracking-wider hover:text-white transition-colors">VIEW ALL</button>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
+                    {/* Knowledge Map Card */}
+                    <div
+                        onClick={() => navigate('/knowledge-map')}
+                        className="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group cursor-pointer"
+                    >
+                        <div className="h-24 w-full bg-cover bg-center relative" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCortvHfEbdA5jf2u2gDb8NYA-UISh_joVB5fsD03XEMGcxCELOEIjQg8RUdeGek8tCKDVfuM0U3xi2Dm2NXYvdAEg6g8hg3AgzeruewjjM3x1HLEOaEbkD31kwYEh35-e2pFy5cF6jIv0bkjjVFWrJUdeMjII35mNUscHm7HA1wLPnkICE7G-abx5CWuVG6ht5DuPp1loIdZs62xSnRwrJNJFFtr2lQWjw7kl3gYuKGs1gdwk_6Iq0j_uwhpguQPHkuAkm9SNxWmY")' }}>
+                            <div className="absolute top-2 right-2 bg-black/60 backdrop-blur rounded px-1.5 py-0.5">
+                                <span className="text-[10px] font-bold text-white">CORE</span>
+                            </div>
+                        </div>
+                        <div className="p-3 flex flex-col flex-1">
+                            <h4 className="text-white font-bold text-sm leading-snug mb-1">Data Structures</h4>
+                            <p className="text-slate-500 text-xs mb-3 truncate">Knowledge Map</p>
+                            <div className="mt-auto">
+                                <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+                                    <span>STATUS</span>
+                                    <span className="text-primary">ACTIVE</span>
+                                </div>
+                                <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden">
+                                    <div className="h-full bg-primary" style={{ width: '65%' }}></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {/* Card 1 */}
                     <div className="flex flex-col bg-surface-dark rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-colors group">
                         <div className="h-24 w-full bg-cover bg-center relative" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXEGENszpnFrltra6nrFHSmJ-tDsycE8h2acUmackYGw4GBbfF8RAddewyfD_WvLG0vYUs0FRR_boHU4ptjmhDJ5NutTcZNfCCQa3M-AIOLaaqJ_hiQamIGgfPFvB-V5gYiXxai84Pxrf_zqZf-Ne3Mrbpper0-bC_i16yNIQwe5xWi9WLKmAqcO9xtq1AOLRBKim4dclN0Cv-Ng2jhe8-JZsgL7fncBQtZIZtJ7jA9sRYYtQB0kpr6x94r_Owl8-pQY_padEfrBw")' }}>

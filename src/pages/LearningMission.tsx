@@ -6,7 +6,10 @@ import { AnimatePresence } from "framer-motion";
 import { type VideoMetadata } from "../services/youtube";
 import { type MissionContent, type Question } from "../services/gemini";
 import { TrainingGrounds } from "../components/mission/TrainingGrounds";
+import { FlowStateArena } from "../components/mission/FlowStateArena";
 import { cn } from "../lib/utils";
+import { useAuth } from "../context/AuthContext";
+import { saveMissionProgress, logQuestionAttempt, awardXP } from "../services/progress";
 
 interface LocationState {
     metadata: VideoMetadata;
@@ -25,6 +28,7 @@ export default function LearningMission() {
     const { missionId } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
+    const { user } = useAuth();
     const { metadata, briefing } = (location.state as LocationState) || {};
 
     // Player State
@@ -35,9 +39,22 @@ export default function LearningMission() {
     const [activeQuestion, setActiveQuestion] = useState<Question | null>(null);
     const [completedQuestions, setCompletedQuestions] = useState<string[]>([]);
     const [attempts, setAttempts] = useState<QuestionAttempt[]>([]);
+    const [showConfidenceCheck, setShowConfidenceCheck] = useState(false);
 
     // Checkpoints (from Gemini questions)
     const checkpoints = briefing?.questions || [];
+
+    // Initialize Mission Progress in Firestore
+    useEffect(() => {
+        if (user && missionId && metadata) {
+            saveMissionProgress(user.uid, missionId, {
+                title: metadata.title,
+                subject: "General", // Placeholder or derived from metadata
+                score: 0,
+                completed: false
+            });
+        }
+    }, [user, missionId, metadata]);
 
     // Redirect if no data
     if (!metadata || !briefing) {
@@ -89,21 +106,55 @@ export default function LearningMission() {
         setIsPlaying(event.data === 1);
     };
 
-    const handleQuestionComplete = (correct: boolean, selectedIndex: number) => {
+    const handleQuestionComplete = async (correct: boolean, selectedIndex: number) => {
         if (activeQuestion) {
-            setCompletedQuestions(prev => [...prev, activeQuestion.id]);
-            setAttempts(prev => [...prev, {
+            const attempt = {
                 questionId: activeQuestion.id,
                 questionText: activeQuestion.text,
                 selectedOption: activeQuestion.options[selectedIndex],
                 isCorrect: correct,
                 timestamp: Date.now()
-            }]);
+            };
+
+            setCompletedQuestions(prev => [...prev, activeQuestion.id]);
+            setAttempts(prev => [...prev, attempt]);
+
+            // Save to Firestore
+            if (user && missionId) {
+                // We use any type cast here because the generic QuestionAttempt in this file 
+                // slightly differs from or needs to map to the service type
+                await logQuestionAttempt(user.uid, missionId, attempt);
+            }
         }
         setActiveQuestion(null);
         if (playerRef.current) {
             playerRef.current.playVideo();
         }
+    };
+
+    const handleVideoEnd = () => {
+        setIsPlaying(false);
+        // Ensure we exit full screen if possible, though browser restrictions might apply
+        setShowConfidenceCheck(true);
+    };
+
+    const handleConfidenceComplete = async (confidence: "guessing" | "unsure" | "solid" | "skip") => {
+        if (user && missionId) {
+            // Calculate final XP
+            // Base XP: 100
+            // + 50 per correct answer
+            const correctCount = attempts.filter(a => a.isCorrect).length;
+            const xpEarned = 100 + (correctCount * 50);
+
+            await saveMissionProgress(user.uid, missionId, {
+                completed: true,
+                score: xpEarned,
+                confidenceLevel: confidence
+            });
+
+            await awardXP(user.uid, xpEarned);
+        }
+        navigate("/dashboard");
     };
 
     const playerOptions = {
@@ -136,6 +187,15 @@ export default function LearningMission() {
                         onComplete={(correct, selectedIndex) => {
                             handleQuestionComplete(correct, selectedIndex);
                         }}
+                    />
+                )}
+            </AnimatePresence>
+
+            {/* Flow State Arena (Confidence Check) */}
+            <AnimatePresence>
+                {showConfidenceCheck && (
+                    <FlowStateArena
+                        onComplete={handleConfidenceComplete}
                     />
                 )}
             </AnimatePresence>
@@ -183,6 +243,7 @@ export default function LearningMission() {
                                 opts={playerOptions}
                                 onReady={handlePlayerReady}
                                 onStateChange={handlePlayerStateChange}
+                                onEnd={handleVideoEnd}
                                 className="w-full h-full"
                             />
                         </div>

@@ -3,15 +3,38 @@ import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 export default function Login() {
-    const { user, signInWithGoogle } = useAuth();
+    // Destructure signInWithEmail from the updated AuthContext
+    const { user, signInWithGoogle, signInWithEmail } = useAuth();
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
 
-    // If already logged in, redirect (though ProtectedRoute handles this usually, good for safety)
+    // State for UI loading and form inputs
+    const [isLoading, setIsLoading] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    // If already logged in, redirect
     if (user) {
         navigate("/dashboard");
     }
 
+    // Handler for Email/Password Login
+    const handleEmailLogin = async () => {
+        if (!email || !password) return;
+
+        setIsLoading(true);
+        try {
+            await signInWithEmail(email, password);
+            navigate("/dashboard");
+        } catch (error) {
+            console.error("Login failed", error);
+            // Optional: Add a toast notification or alert here for user feedback
+            alert("Access Denied: Invalid Credentials");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // Handler for Google Login
     const handleGoogleLogin = async () => {
         setIsLoading(true);
         try {
@@ -53,18 +76,24 @@ export default function Login() {
 
                 {/* Login Form */}
                 <div className="w-full space-y-5">
-                    {/* Cadet ID Input */}
+                    {/* Cadet ID / Email Input */}
                     <div className="space-y-2 group">
                         <label className="block text-xs font-bold text-gray-400 ml-4 uppercase tracking-widest group-focus-within:text-primary transition-colors">Cadet ID / Email</label>
                         <div className="relative flex items-center">
                             <div className="absolute left-0 top-0 bottom-0 pl-4 flex items-center pointer-events-none">
                                 <span className="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">badge</span>
                             </div>
-                            <input className="w-full bg-[#1a2632]/80 border-2 border-transparent focus:border-primary/60 text-white placeholder-gray-500 rounded-full py-3.5 pl-12 pr-4 outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(19,127,236,0.3)] focus:bg-[#1a2632]" placeholder="Enter ID" type="text" disabled />
+                            <input
+                                className="w-full bg-[#1a2632]/80 border-2 border-transparent focus:border-primary/60 text-white placeholder-gray-500 rounded-full py-3.5 pl-12 pr-4 outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(19,127,236,0.3)] focus:bg-[#1a2632]"
+                                placeholder="Enter Email"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
                         </div>
                     </div>
 
-                    {/* Access Code Input */}
+                    {/* Access Code / Password Input */}
                     <div className="space-y-2 group">
                         <div className="flex justify-between items-center ml-4 mr-1">
                             <label className="text-xs font-bold text-gray-400 uppercase tracking-widest group-focus-within:text-primary transition-colors">Access Code</label>
@@ -73,17 +102,28 @@ export default function Login() {
                             <div className="absolute left-0 top-0 bottom-0 pl-4 flex items-center pointer-events-none">
                                 <span className="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">vpn_key</span>
                             </div>
-                            <input className="w-full bg-[#1a2632]/80 border-2 border-transparent focus:border-primary/60 text-white placeholder-gray-500 rounded-full py-3.5 pl-12 pr-12 outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(19,127,236,0.3)] focus:bg-[#1a2632]" placeholder="Enter Password" type="password" disabled />
+                            <input
+                                className="w-full bg-[#1a2632]/80 border-2 border-transparent focus:border-primary/60 text-white placeholder-gray-500 rounded-full py-3.5 pl-12 pr-12 outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(19,127,236,0.3)] focus:bg-[#1a2632]"
+                                placeholder="Enter Password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                onKeyDown={(e) => e.key === 'Enter' && handleEmailLogin()}
+                            />
                             <button className="absolute right-0 top-0 bottom-0 pr-4 flex items-center text-gray-400 hover:text-white transition-colors focus:outline-none">
                                 <span className="material-symbols-outlined">visibility</span>
                             </button>
                         </div>
                     </div>
 
-                    {/* Primary Action */}
-                    <button className="w-full bg-primary hover:bg-[#0f6bd0] text-white font-bold py-4 rounded-full mt-2 shadow-[0_0_20px_rgba(19,127,236,0.4)] hover:shadow-[0_0_30px_rgba(19,127,236,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 uppercase tracking-widest flex items-center justify-center gap-2 group cursor-not-allowed opacity-70">
-                        <span>Enter System</span>
-                        <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    {/* Primary Action Button */}
+                    <button
+                        onClick={handleEmailLogin}
+                        disabled={isLoading || !email || !password}
+                        className="w-full bg-primary hover:bg-[#0f6bd0] text-white font-bold py-4 rounded-full mt-2 shadow-[0_0_20px_rgba(19,127,236,0.4)] hover:shadow-[0_0_30px_rgba(19,127,236,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 uppercase tracking-widest flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                    >
+                        <span>{isLoading ? "Authenticating..." : "Enter System"}</span>
+                        {!isLoading && <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>}
                     </button>
 
                     {/* Divider */}

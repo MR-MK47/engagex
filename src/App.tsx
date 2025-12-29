@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MissionBriefing from "./pages/MissionBriefing";
 import LearningMission from "./pages/LearningMission";
+import KnowledgeMap from "./pages/KnowledgeMap";
+import HallOfFame from "./pages/HallOfFame";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/mission-briefing" element={<MissionBriefing />} />
             <Route path="/mission/:missionId" element={<LearningMission />} />
+            <Route path="/knowledge-map" element={<KnowledgeMap />} />
+            <Route path="/hall-of-fame" element={<HallOfFame />} />
           </Route>
         </Routes>
       </BrowserRouter>
