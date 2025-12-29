@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 // Initialize the new GenAI client
-const genAI = new GoogleGenAI({ apiKey: API_KEY });
+const genAI = API_KEY ? new GoogleGenAI({ apiKey: API_KEY }) : null;
 
 export interface Question {
     id: string;
@@ -22,8 +22,8 @@ export interface MissionContent {
 }
 
 export const generateMissionBriefing = async (videoTitle: string, videoDescription: string): Promise<MissionContent> => {
-    if (!API_KEY) {
-        throw new Error("Gemini API Key missing");
+    if (!genAI) {
+        throw new Error("Gemini AI client not initialized (API Key missing)");
     }
 
     // Explicitly handle 429/404 errors with the new client
