@@ -16,8 +16,6 @@ export function BottomNav() {
         return null;
     }
 
-    const isTabActive = isBriefing || isMission; // Treat briefing as mission tab for now
-
     return (
         <div className="fixed bottom-6 left-0 right-0 z-40 flex justify-center pointer-events-none">
             <motion.div
@@ -62,19 +60,41 @@ export function BottomNav() {
                     )}
                 </Link>
 
-                {/* Stats Tab (Placeholder) */}
-                <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors group relative">
-                    <div className="p-2 rounded-xl group-hover:bg-white/5 transition-all duration-300">
-                        <span className="material-symbols-outlined text-[24px]">bar_chart</span>
-                    </div>
-                </button>
+                {/* Stats Tab */}
+                <Link to="/hall-of-fame" className="relative group">
+                    <button className={cn(
+                        "flex flex-col items-center gap-1 transition-colors",
+                        path === "/hall-of-fame" ? "text-primary" : "text-slate-400 hover:text-white"
+                    )}>
+                        <div className={cn(
+                            "p-2 rounded-xl transition-all duration-300",
+                            path === "/hall-of-fame" ? "bg-primary/20 shadow-[0_0_15px_rgba(19,127,236,0.3)]" : "group-hover:bg-white/5"
+                        )}>
+                            <span className="material-symbols-outlined text-[24px]">bar_chart</span>
+                        </div>
+                    </button>
+                    {path === "/hall-of-fame" && (
+                        <motion.div layoutId="nav-pill" className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_#137fec]" />
+                    )}
+                </Link>
 
                 {/* Profile Tab */}
-                <button className="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors group relative">
-                    <div className="p-2 rounded-xl group-hover:bg-white/5 transition-all duration-300">
-                        <span className="material-symbols-outlined text-[24px]">person</span>
-                    </div>
-                </button>
+                <Link to="/settings" className="relative group">
+                    <button className={cn(
+                        "flex flex-col items-center gap-1 transition-colors",
+                        path === "/settings" ? "text-primary" : "text-slate-400 hover:text-white"
+                    )}>
+                        <div className={cn(
+                            "p-2 rounded-xl transition-all duration-300",
+                            path === "/settings" ? "bg-primary/20 shadow-[0_0_15px_rgba(19,127,236,0.3)]" : "group-hover:bg-white/5"
+                        )}>
+                            <span className="material-symbols-outlined text-[24px]">person</span>
+                        </div>
+                    </button>
+                    {path === "/settings" && (
+                        <motion.div layoutId="nav-pill" className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_#137fec]" />
+                    )}
+                </Link>
             </motion.div>
         </div>
     );
