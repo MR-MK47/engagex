@@ -65,7 +65,7 @@ Follow these instructions to set up the project locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/mr-mk47/engagex.git](https://github.com/mr-mk47/engagex.git)
+git clone https://github.com/mr-mk47/engagex.git
 cd engagex
 
 ```
